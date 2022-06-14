@@ -1,0 +1,269 @@
+<script setup>
+// This starter template is using Vue 3 <script setup> SFCs
+// Check out https://vuejs.org/api/sfc-script-setup.html#script-setup
+// import HelloWorld from "./components/HelloWorld.vue";
+var isPercentage = true;
+var prizes = [
+  {
+    text: "Áo thun J2Team",
+    img: "images/Ao.png",
+    number: 1, // 1%,
+    percentpage: 0.002, // 2%
+  },
+  {
+    text: "Nón J2 Team",
+    img: "images/Non.png",
+    number: 1,
+    percentpage: 0.002, // 2%
+  },
+  {
+    text: "Vòng Tay J2Team",
+    img: "images/Vong.png",
+    number: 1,
+    percentpage: 0.002, // 2%
+  },
+  {
+    text: "J2Team Security",
+    img: "images/j2_logo.png",
+    number: 1,
+    percentpage: 0.002, // 2%
+  },
+  {
+    text: "Có cái nịt",
+    img: "images/miss.png",
+    percentpage: 0.99, // 50%
+  },
+  {
+    text: "J2Team Quần",
+    img: "images/j2_logo.png",
+    number: 1,
+    percentpage: 0.001, // 1%
+  },
+  {
+    text: "J2Team Nịt",
+    img: "images/Vong.png",
+    number: 1,
+    percentpage: 0.001, // 1%
+  },
+];
+document.addEventListener(
+  "DOMContentLoaded",
+  function () {
+    hcLuckywheel.init({
+      id: "luckywheel",
+      config: function (callback) {
+        callback && callback(prizes);
+      },
+      mode: "both",
+      getPrize: function (callback) {
+        var rand = randomIndex(prizes);
+        var chances = rand;
+        callback && callback([rand, chances]);
+      },
+      gotBack: function (data) {
+        if (data == null) {
+          Swal.fire("Chương trình kết thúc", "Đã hết phần thưởng", "error");
+        } else if (data == "Có cái nịt") {
+          Swal.fire("Bạn không trúng thưởng", data, "error");
+        } else {
+          Swal.fire("Đã trúng giải", data, "success");
+        }
+      },
+    });
+  },
+  false
+);
+function randomIndex(prizes) {
+  if (isPercentage) {
+    var counter = 1;
+    for (let i = 0; i < prizes.length; i++) {
+      if (prizes[i].number == 0) {
+        counter++;
+      }
+    }
+    if (counter == prizes.length) {
+      return null;
+    }
+    let rand = Math.random();
+    let prizeIndex = null;
+    console.log(rand);
+    switch (true) {
+      case rand < prizes[4].percentpage:
+        prizeIndex = 4;
+        break;
+      case rand < prizes[4].percentpage + prizes[3].percentpage:
+        prizeIndex = 3;
+        break;
+      case rand <
+        prizes[4].percentpage + prizes[3].percentpage + prizes[2].percentpage:
+        prizeIndex = 2;
+        break;
+      case rand <
+        prizes[4].percentpage +
+          prizes[3].percentpage +
+          prizes[2].percentpage +
+          prizes[1].percentpage:
+        prizeIndex = 1;
+        break;
+      case rand <
+        prizes[4].percentpage +
+          prizes[3].percentpage +
+          prizes[2].percentpage +
+          prizes[1].percentpage +
+          prizes[0].percentpage:
+        prizeIndex = 0;
+        break;
+    }
+    if (prizes[prizeIndex].number != 0) {
+      prizes[prizeIndex].number = prizes[prizeIndex].number - 1;
+      return prizeIndex;
+    } else {
+      return randomIndex(prizes);
+    }
+  } else {
+    var counter = 0;
+    for (let i = 0; i < prizes.length; i++) {
+      if (prizes[i].number == 0) {
+        counter++;
+      }
+    }
+    if (counter == prizes.length) {
+      return null;
+    }
+    var rand = (Math.random() * prizes.length) >>> 0;
+    if (prizes[rand].number != 0) {
+      prizes[rand].number = prizes[rand].number - 1;
+      return rand;
+    } else {
+      return randomIndex(prizes);
+    }
+  }
+}
+</script>
+
+<template>
+  <!-- <img alt="Vue logo" src="./assets/logo.png" /> -->
+  <!-- <HelloWorld msg="Hello Vue 3 + Vite" /> -->
+  <body>
+    <div class="wrapper typo" id="wrapper">
+      <section id="luckywheel" class="hc-luckywheel">
+        <div class="hc-luckywheel-container">
+          <canvas class="hc-luckywheel-canvas" width="500px" height="500px"
+            >Vòng Xoay May Mắn</canvas
+          >
+        </div>
+        <a class="hc-luckywheel-btn" href="javascript:;">Xoay</a>
+      </section>
+    </div>
+  </body>
+</template>
+
+<style>
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 60px;
+}
+.hc-luckywheel {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  margin-top: -250px;
+  margin-left: -250px;
+  width: 500px; /*Change this when change size*/
+  height: 500px; /*Change this when change size*/
+  border-radius: 50%;
+  border: 16px solid #e44025;
+  box-shadow: 0 2px 3px #333, 0 0 2px #000;
+}
+.wrapper {
+  width: 100%;
+  height: 100%;
+}
+@media only screen and (max-width: 600px) {
+  .hc-luckywheel {
+    width: 350px;
+    height: 350px;
+    top: 10%;
+    left: 18%;
+    margin: 0;
+    width: 300px;
+    height: 300px;
+    border: 12px solid #e44025;
+  }
+  .hc-luckywheel-item img {
+    top: -5px;
+    width: 50px;
+    height: 50px;
+  }
+  .hc-luckywheel-item span {
+    transform-origin: 50% 150px;
+  }
+  .hc-luckywheel-item span p {
+    font-size: 12px;
+  }
+  .hc-luckywheel-btn {
+    left: 134px;
+    top: 134px;
+    width: 36px;
+    height: 36px;
+    line-height: 36px;
+    text-align: center;
+    font-size: 12px;
+  }
+  .hc-luckywheel-btn::after {
+    left: 3px;
+    top: -20px;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+    border-width: 15px;
+  }
+  .swal2-title {
+    font-size: 1.075em;
+  }
+}
+@media only screen and (max-width: 425px) {
+  .hc-luckywheel {
+    top: 10%;
+    left: 12%;
+    margin: 0;
+    width: 300px;
+    height: 300px;
+    border: 12px solid #e44025;
+  }
+}
+@media only screen and (max-width: 376px) {
+  .hc-luckywheel {
+    width: 300px;
+    height: 300px;
+    left: 6.5%;
+  }
+  .hc-luckywheel-btn {
+    width: 34px;
+    height: 34px;
+  }
+  .hc-luckywheel-btn::after {
+    left: 2px;
+  }
+}
+
+@media only screen and (max-width: 321px) {
+  .hc-luckywheel {
+    width: 290px;
+    height: 290px;
+    left: 1%;
+  }
+  .hc-luckywheel-btn {
+    width: 35px;
+    height: 35px;
+  }
+  .hc-luckywheel-btn {
+    left: 129px;
+    top: 128px;
+  }
+}
+</style>
