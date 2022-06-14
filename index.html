@@ -130,43 +130,43 @@
               {
                 text: "Áo thun J2Team",
                 img: "images/Ao.png",
-                number: 100, // 1%,
+                number: 1000, // 1%,
                 percentpage: 0.02 // 20%
               },
               {
                 text: "Nón J2 Team",
                 img: "images/Non.png",
-                number: 100,
+               number: 1000, // 1%,
                 percentpage: 0.02 // 20%
               },
               {
                 text: "Vòng Tay J2Team",
                 img: "images/Vong.png",
-                number : 100,
+                number : 1000,
                 percentpage: 0.01 // 10%
               },
               {
                 text: "J2Team Security",
                 img: "images/j2_logo.png",
-                number: 100,
+               number: 1000, // 1%,
                 percentpage: 0.01// 10%
               },
               {
                 text: "Có cái nịt",
                 img: "images/miss.png",
-                number: 100,
+               number: 1000, // 1%,
                 percentpage: 0.03 // 20%
               },
               {
                 text: "J2Team Quần",
                 img: "images/j2_logo.png",
-                number: 29,
+               number: 1000, // 1%,
                 percentpage: 0.01 // 10%
               },
               {
                 text: "J2Team Nịt",
                 img: "images/Vong.png",
-                number: 100,
+               number: 1000, // 1%,
                 percentpage: 0.01 // 10%
               },
             ];
@@ -222,7 +222,7 @@
             return null
           }
           let rand = Math.random();
-          let prizeIndex = null;
+          let prizeIndex = 0;
           console.log(rand);
           switch (true) {
             case rand < prizes[4].percentpage:
@@ -241,7 +241,7 @@
               prizeIndex = 0;
               break;  
           }
-          if(prizes[prizeIndex].number != 0){
+          if(prizes[prizeIndex].number !== 0){
             prizes[prizeIndex].number = prizes[prizeIndex].number - 1
             return prizeIndex
           }else{
@@ -259,7 +259,7 @@
           }
           var rand = (Math.random() * (prizes.length)) >>> 0;
           if(prizes[rand].number != 0){
-            prizes[rand].number = prizes[rand].number - 1
+            prizes[rand].number = prizes[rand].number + 1
             return rand
           }else{
             return randomIndex(prizes)
