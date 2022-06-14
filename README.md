@@ -1,7 +1,48 @@
-# Vue 3 + Vite
+# J2Team Offline Luckywheel
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+I write this luckywheel for j2team offline event
 
-## Recommended IDE Setup
+### Prizes Config
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar)
+```js
+Line 34;
+var prizes = [
+  {
+    text: "Hoodie J2Team", // Require
+    img: "images/Ao.png", // Optional
+    number: 1,
+    percentage: 1 // (100%) | 0.5 // 50% | 0.01 // 1%
+  }
+];
+```
+
+### Mode Config
+
+```js
+Line 80;
+mode : both // For display both image and text
+mode : null // For display text if only text and image if having it will having no text
+```
+
+### Return message
+
+Using sweetalert 2 library
+
+```js
+  Line 86
+  if(data == null){
+    // This for when no more prize
+    Swal.fire(
+      'Chương trình kết thúc',
+      'Đã hết phần thưởng',
+      'error'
+    )
+  }else{
+    // This for when spin is done
+    Swal.fire(
+      'Đã trúng giải',
+      data,
+      'success'
+    )
+  }
+```
