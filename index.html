@@ -4,15 +4,15 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Game show Lucky Wheel</title>
-    <link rel="stylesheet" href="css/typo/typo.css" />
-    <link rel="stylesheet" href="css/hc-canvas-luckwheel.css" />
+    <link rel="stylesheet" href="./src/assets/css/typo/typo.css" />
+    <link rel="stylesheet" href="./src/assets/css/hc-canvas-luckwheel.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"></script>
     <style>
       .hc-luckywheel {
         position:fixed;
         top: 50%;
         left: 49%;
-        margin-top: -250px;
+        margin-top: -175px;
         margin-left: -250px;
         width: 500px; /*Change this when change size*/
         height: 500px; /*Change this when change size*/
@@ -111,7 +111,7 @@
       
     </style>
   </head>
-  <body class="bg" style="height:100vh !important">
+  <body class="bg" style="height:100vh !important;width: 100vw !important;">
     <div class="wrapper typo" id="wrapper">
       <section id="luckywheel" class="hc-luckywheel">
         <div class="hc-luckywheel-container">
@@ -124,7 +124,7 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-    <script src="js/hc-canvas-luckwheel.js"></script>
+    <script src="./src/assets/js/hc-canvas-luckwheel.js"></script>
     <script>
       getDataFromApp()
       function getDataFromApp() {
@@ -147,43 +147,43 @@
       var prizes = [
               {
                 text: "Áo thun Go2Joy",
-                img: "images/Ao.png",
+                img: "./src/assets/images/Ao.png",
                 number: 1000, // 1%,
                 percentpage: 0.02 // 20%
               },
               {
                 text: "Nón Go2Joy",
-                img: "images/Non.png",
+                img: "./src/assets/images/Non.png",
                number: 1000, // 1%,
                 percentpage: 0.02 // 20%
               },
               {
                 text: "Vòng Tay Go2Joy",
-                img: "images/Vong.png",
+                img: "./src/assets/images/Vong.png",
                 number : 1000,
                 percentpage: 0.01 // 10%
               },
               {
                 text: "Security Go2Joy",
-                img: "images/j2_logo.png",
+                img: "./src/assets/images/j2_logo.png",
                number: 1000, // 1%,
                 percentpage: 0.01// 10%
               },
               {
                 text: "Có cái nịt",
-                img: "images/miss.png",
+                img: "./src/assets/images/miss.png",
                number: 1000, // 1%,
                 percentpage: 0.03 // 20%
               },
               {
                 text: "Quần Go2Joy",
-                img: "images/j2_logo.png",
+                img: "./src/assets/images/j2_logo.png",
                number: 1000, // 1%,
                 percentpage: 0.01 // 10%
               },
               {
                 text: "Nịt Go2Joy",
-                img: "images/Vong.png",
+                img: "./src/assets/images/Vong.png",
                number: 1000, // 1%,
                 percentpage: 0.01 // 10%
               },
