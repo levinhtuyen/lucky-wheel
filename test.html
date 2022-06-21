@@ -140,7 +140,22 @@
     {# <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script> #}
     <script src="/src/assets/js/hc-canvas-luckwheel.js"></script>
     <script>
-    
+       function getQueryParams(qs) {
+          qs = qs.split('+').join(' ');
+
+          var params = {},
+              tokens,
+              re = /[?&]?([^=]+)=([^&]*)/g;
+
+          while (tokens = re.exec(qs)) {
+              params[decodeURIComponent(tokens[1])] = decodeURIComponent(tokens[2]);
+          }
+          console.log('params 1',params)
+          return params;
+      }
+      console.log('getQueryParams 2',getQueryParams( window.location.search))
+
+      
       function parseQueryString(query) {
           var vars = query.split("&");
           var params = {};
