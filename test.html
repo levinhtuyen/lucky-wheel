@@ -124,6 +124,7 @@
     </div>
     <button onclick="myFunction()">Click me</button>
     -->
+    
     <div style="display:grid; justify-content:center">
       <h1 style="width:100%">Vòng Quay --- test data </h1>
       <div style="width: 100%;">
@@ -135,6 +136,8 @@
     <div style="width: 100%;">
       <button id="showToast" type="button" onclick="showToast()">Show toast</button>
     </div>
+    <a href="intent:#Intent;action=com.appname.demo;end">click to load</a>
+      <button id="loadTime" onclick="loadTime()" type="button">LoadTime</button>
     </div>
     
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
@@ -152,6 +155,16 @@
             console.log('MyJavascriptInterface',MyJavascriptInterface)
             console.log('MyJavascriptInterface.showToast(getToastMessage());',MyJavascriptInterface.showToast(getToastMessage()))
             MyJavascriptInterface.showToast(getToastMessage());
+        }
+        function loadTime() {
+        console.log('loadTime')
+        String page=
+          "<html><body><a href=\"http://webview.used.to.be.less.annoying/clock\">"
+            + DateUtils.formatDateTime(this, new Date().getTime(),
+                          DateUtils.FORMAT_SHOW_DATE
+                            | DateUtils.FORMAT_SHOW_TIME)
+            + "</a></body></html>";
+        browser.loadData(page, "text/html; charset=UTF-8", null);
         }
     </script>
     <script>
