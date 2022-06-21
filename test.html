@@ -3,16 +3,15 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Test Get Data Game show Lucky Wheel</title>
-    <link rel="stylesheet" href="./src/assets/css/typo/typo.css" />
-    <link rel="stylesheet" href="./src/assets/css/hc-canvas-luckwheel.css" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"></script>
+    <title>J2Team Community Offline</title>
+    <link rel="stylesheet" href="/src/assets/css/typo/typo.css" />
+    <link rel="stylesheet" href="/src/assets/css/hc-canvas-luckwheel.css" />
     <style>
       .hc-luckywheel {
         position:fixed;
         top: 50%;
-        left: 49%;
-        margin-top: -175px;
+        left: 50%;
+        margin-top: -250px;
         margin-left: -250px;
         width: 500px; /*Change this when change size*/
         height: 500px; /*Change this when change size*/
@@ -22,7 +21,7 @@
       }
       .wrapper {
         width: 100%;
-        height: 100% !important;
+        height: 100%
       }
       @media only screen and (max-width: 600px) {
         .hc-luckywheel {
@@ -64,8 +63,19 @@
           border-width: 15px;
         }
         .swal2-title {
-          font-size: 1.075em;
+          font-size: 14px;
         }
+        .hc-luckywheel-item span {
+          font-size: 12px;
+           width: 80px;
+        }
+        .hc-luckywheel-item img {
+          position: relative;
+          top: 7px;
+          left: 0px;
+          width: 67px;
+          height: 66px;
+        } /*Change this when change size*/
       }
       @media only screen and (max-width: 425px) {
         .hc-luckywheel {
@@ -75,6 +85,10 @@
           width: 300px;
           height: 300px;
           border: 12px solid #e44025;
+          
+        }
+        .hc-luckywheel-item span {
+          font-size: 10px;
         }
       }
       @media only screen and (max-width: 376px){
@@ -90,6 +104,7 @@
         .hc-luckywheel-btn::after {
           left: 2px;
         }
+        
       }   
     
       
@@ -111,139 +126,83 @@
       
     </style>
   </head>
-  <body class="bg1" style="height:100vh !important;width: 100vw !important;">
-    <!-- <div class="wrapper typo" id="wrapper">
-       <section id="luckywheel" class="hc-luckywheel">
+  <body class="bg">
+    <div class="wrapper typo" id="wrapper">
+      <section id="luckywheel" class="hc-luckywheel">
         <div class="hc-luckywheel-container">
           <canvas class="hc-luckywheel-canvas" width="500px" height="500px"
             >Vòng Xoay May Mắn</canvas
           >
         </div>
         <a class="hc-luckywheel-btn" href="javascript:;">Xoay</a>
-      </section> 
+      </section>
     </div>
-    <button onclick="myFunction()">Click me</button>
-    -->
-    
-    <div style="display:grid; justify-content:center">
-      <h1 style="width:100%">Vòng Quay --- test data </h1>
-      <div style="width: 100%;">
-        <button id="changeColor" type="button">Change color</button>
-    </div>
-    <div style="width: 100%;">
-        <input id="toastMessage" type="text" placeholder="Toast message"/>
-    </div>
-    <div style="width: 100%;">
-      <button id="showToast" type="button" onclick="showToast()">Show toast</button>
-    </div>
-    <a href="intent:#Intent;action=com.appname.demo;end">click to load</a>
-      <button id="loadTime" onclick="loadTime()" type="button">LoadTime</button>
-    </div>
-    
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-    <script src="./src/assets/js/hc-canvas-luckwheel.js"></script>
-    <script type="text/javascript">
-        function getToastMessage() {
-            console.log('document.getElementById(toastMessage)',document.getElementById('toastMessage'))
-            return document.getElementById('toastMessage').value;
-        }
-        function concatenateStrings(arg1, arg2) {
-        console.log('arg1 + arg2',arg1 + arg2)
-            return arg1 + arg2;
-        }
-        function showToast() {
-            console.log('MyJavascriptInterface',MyJavascriptInterface)
-            console.log('MyJavascriptInterface.showToast(getToastMessage());',MyJavascriptInterface.showToast(getToastMessage()))
-            MyJavascriptInterface.showToast(getToastMessage());
-        }
-        function loadTime() {
-        console.log('loadTime')
-        String page=
-          "<html><body><a href=\"http://webview.used.to.be.less.annoying/clock\">"
-            + DateUtils.formatDateTime(this, new Date().getTime(),
-                          DateUtils.FORMAT_SHOW_DATE
-                            | DateUtils.FORMAT_SHOW_TIME)
-            + "</a></body></html>";
-        browser.loadData(page, "text/html; charset=UTF-8", null);
-        }
-    </script>
+    {# <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script> #}
+    <script src="/src/assets/js/hc-canvas-luckwheel.js"></script>
     <script>
-        
-        function myFunction()
-        {
-           mWebview = (WebView)findViewById(R.id.yourwebviewlayout);
-            final class YourWebChromeClient extends WebChromeClient {
-                            @Override
-                            public boolean onJsAlert(WebView view, String url, String message, JsResult result) {
-                                Toast.makeText(getApplicationContext(),
-                                        "alert message =  " + message,
-                                        Toast.LENGTH_SHORT).show();
-                                result.confirm();
-                                return true;
-                            }
-                        }
-            mWebview.setWebChromeClient(new YourWebChromeClient());
+    
+      function parseQueryString(query) {
+          var vars = query.split("&");
+          var params = {};
+          for (var i = 0; i < vars.length; i++) {
+            var pair = vars[i].split("=");
+            var key = decodeURIComponent(pair.shift());
+            var value = decodeURIComponent(pair.join("="));
+            // If first entry with this name
+            if (typeof params[key] === "undefined") {
+              params[key] = value;
+              // If second entry with this name
+            } else if (typeof params[key] === "string") {
+              var arr = [params[key], value];
+              params[key] = arr;
+              // If third or later entry with this name
+            } else {
+              params[key].push(value);
+            }
+          }
+          return params;
         }
-      getDataFromApp()
-      function getDataFromApp() {
-          const headerFormDataGet = {
-              'Content-Type' : 'application/json',
-              'Accept'       : 'application/json',
-              'Authorization': `Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnb3Btcy1qd3QiLCJzdWIiOiJ7XCJzdGFmZlNuXCI6MjA3LFwiaG90ZWxTblwiOjUxLFwicm9sZVNuXCI6MX0iLCJpYXQiOjE2NTUyODU5MjYsImV4cCI6MTY1NTM3MjMyNn0.8JtFw8UyS73ErrbhC8xi3ioa9gxScpRZRJ3Q-cLA74I`
-          }
-          const headerFormDataPost = {
-              'Content-Type' : 'multipart/form-data',
-              'Accept'       : 'multipart/form-data',
-              'Authorization': `Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnb3Btcy1qd3QiLCJzdWIiOiJ7XCJzdGFmZlNuXCI6MjA3LFwiaG90ZWxTblwiOjUxLFwicm9sZVNuXCI6MX0iLCJpYXQiOjE2NTUyODU5MjYsImV4cCI6MTY1NTM3MjMyNn0.8JtFw8UyS73ErrbhC8xi3ioa9gxScpRZRJ3Q-cLA74I`
-          }
-          axios.defaults.headers =  headerFormDataGet
-          axios.get("https://staging-api.gopms.io/api/v1/configuration/policy/getPolicy", {name: "data"}).then(function (response) {
-              console.log(response.data.data)
-          })
-      }
+        var params =  window.location.search;
+        var parsedQs = parseQueryString(params);
+        console.log(parsedQs);
+
+        
       var isPercentage = true;
       var prizes = [
               {
-                text: "Áo thun Go2Joy",
+                text: "Áo thun J2Team",
                 img: "./src/assets/images/Ao.png",
-                number: 1000, // 1%,
-                percentpage: 0.02 // 20%
+                number: 1, // 1%,
+                percentpage: 0.002 // 2%
               },
               {
-                text: "Nón Go2Joy",
+                text: "Nón J2 Team",
                 img: "./src/assets/images/Non.png",
-               number: 1000, // 1%,
-                percentpage: 0.02 // 20%
+                number: 1,
+                percentpage: 0.002 // 2%
               },
               {
-                text: "Vòng Tay Go2Joy",
+                text: "Vòng Tay J2Team",
                 img: "./src/assets/images/Vong.png",
-                number : 1000,
-                percentpage: 0.01 // 10%
+                number : 1,
+                percentpage: 0.002 // 2%
               },
               {
-                text: "Security Go2Joy",
+                text: "J2Team Security",
                 img: "./src/assets/images/j2_logo.png",
-               number: 1000, // 1%,
-                percentpage: 0.01// 10%
+                number: 1,
+                percentpage: 0.002 // 2%
               },
               {
-                text: "Có cái nịt",
                 img: "./src/assets/images/miss.png",
-               number: 1000, // 1%,
-                percentpage: 0.03 // 20%
+                text: "Có cái nịt",
+                percentpage: 0.99 // 50%
               },
               {
-                text: "Quần Go2Joy",
+                text: "J2Team Quần",
                 img: "./src/assets/images/j2_logo.png",
-               number: 1000, // 1%,
-                percentpage: 0.01 // 10%
-              },
-              {
-                text: "Nịt Go2Joy",
-                img: "./src/assets/images/Vong.png",
-               number: 1000, // 1%,
-                percentpage: 0.01 // 10%
+                number: 1,
+                percentpage: 0.002 // 1%
               },
             ];
       document.addEventListener(
@@ -298,7 +257,7 @@
             return null
           }
           let rand = Math.random();
-          let prizeIndex = 0;
+          let prizeIndex = null;
           switch (true) {
             case rand < prizes[4].percentpage:
               prizeIndex = 4 ;
@@ -316,7 +275,7 @@
               prizeIndex = 0;
               break;  
           }
-          if(prizes[prizeIndex].number !== 0){
+          if(prizes[prizeIndex].number != 0){
             prizes[prizeIndex].number = prizes[prizeIndex].number - 1
             return prizeIndex
           }else{
@@ -334,7 +293,7 @@
           }
           var rand = (Math.random() * (prizes.length)) >>> 0;
           if(prizes[rand].number != 0){
-            prizes[rand].number = prizes[rand].number + 1
+            prizes[rand].number = prizes[rand].number - 1
             return rand
           }else{
             return randomIndex(prizes)
