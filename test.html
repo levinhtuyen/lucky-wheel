@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Test Get Data Game show Lucky Wheel</title>
+    <link rel="stylesheet" href="./src/assets/css/typo/typo.css" />
+    <link rel="stylesheet" href="./src/assets/css/hc-canvas-luckwheel.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"></script>
+    <style>
+      .hc-luckywheel {
+        position:fixed;
+        top: 50%;
+        left: 49%;
+        margin-top: -175px;
+        margin-left: -250px;
+        width: 500px; /*Change this when change size*/
+        height: 500px; /*Change this when change size*/
+        border-radius: 50%;
+        border: 16px solid #e44025;
+        box-shadow: 0 2px 3px #333, 0 0 2px #000;
+      }
+      .wrapper {
+        width: 100%;
+        height: 100% !important;
+      }
+      @media only screen and (max-width: 600px) {
+        .hc-luckywheel {
+          width: 350px;
+          height: 350px;
+          top: 10%;
+          left: 18%;
+          margin:0;
+          width: 300px;
+          height: 300px;
+          border: 12px solid #e44025;
+        }
+        .hc-luckywheel-item img {
+          top: -5px;
+          width: 50px;
+          height: 50px;
+        }
+        .hc-luckywheel-item span {
+          transform-origin: 50% 150px;
+        }
+        .hc-luckywheel-item span p {
+          font-size:12px; 
+        }
+        .hc-luckywheel-btn {
+          left: 134px;
+          top: 134px;
+          width: 36px;
+          height: 36px;
+          line-height: 36px;
+          text-align: center;
+          font-size: 12px;
+        }
+        .hc-luckywheel-btn::after {
+          left: 3px;
+          top: -20px;
+          width: 0;
+          height: 0;
+          overflow: hidden;
+          border-width: 15px;
+        }
+        .swal2-title {
+          font-size: 1.075em;
+        }
+      }
+      @media only screen and (max-width: 425px) {
+        .hc-luckywheel {
+          top: 10%;
+          left: 12%;
+          margin:0;
+          width: 300px;
+          height: 300px;
+          border: 12px solid #e44025;
+        }
+      }
+      @media only screen and (max-width: 376px){
+        .hc-luckywheel {
+          width: 300px;
+          height: 300px;
+          left: 6.5%;
+        }
+        .hc-luckywheel-btn {
+          width: 34px;
+          height: 34px;
+        }
+        .hc-luckywheel-btn::after {
+          left: 2px;
+        }
+      }   
+    
+      
+      @media only screen and (max-width: 321px){
+        .hc-luckywheel {
+          width: 290px;
+          height: 290px;
+          left: 1%;
+        }
+        .hc-luckywheel-btn {
+            width: 35px;
+            height: 35px;
+        }
+        .hc-luckywheel-btn {
+          left: 129px;
+          top: 128px;
+        }
+      }
+      
+    </style>
+  </head>
+  <body class="bg1" style="height:100vh !important;width: 100vw !important;">
+    <!-- <div class="wrapper typo" id="wrapper">
+       <section id="luckywheel" class="hc-luckywheel">
+        <div class="hc-luckywheel-container">
+          <canvas class="hc-luckywheel-canvas" width="500px" height="500px"
+            >Vòng Xoay May Mắn</canvas
+          >
+        </div>
+        <a class="hc-luckywheel-btn" href="javascript:;">Xoay</a>
+      </section> 
+    </div>
+    <button onclick="myFunction()">Click me</button>
+    -->
+    <div style="display:grid; justify-content:center">
+      <h1 style="width:100%">Vòng Quay --- test data </h1>
+      <div style="width: 100%;">
+        <button id="changeColor" type="button">Change color</button>
+    </div>
+    <div style="width: 100%;">
+        <input id="toastMessage" type="text" placeholder="Toast message"/>
+    </div>
+    <div style="width: 100%;">
+      <button id="showToast" type="button" onclick="showToast()">Show toast</button>
+    </div>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <script src="./src/assets/js/hc-canvas-luckwheel.js"></script>
+    <script type="text/javascript">
+        function getToastMessage() {
+            console.log('document.getElementById(toastMessage)',document.getElementById('toastMessage'))
+            return document.getElementById('toastMessage').value;
+        }
+        function concatenateStrings(arg1, arg2) {
+        console.log('arg1 + arg2',arg1 + arg2)
+            return arg1 + arg2;
+        }
+        function showToast() {
+            console.log('MyJavascriptInterface',MyJavascriptInterface)
+            console.log('MyJavascriptInterface.showToast(getToastMessage());',MyJavascriptInterface.showToast(getToastMessage()))
+            MyJavascriptInterface.showToast(getToastMessage());
+        }
+    </script>
+    <script>
+        
+        function myFunction()
+        {
+           mWebview = (WebView)findViewById(R.id.yourwebviewlayout);
+            final class YourWebChromeClient extends WebChromeClient {
+                            @Override
+                            public boolean onJsAlert(WebView view, String url, String message, JsResult result) {
+                                Toast.makeText(getApplicationContext(),
+                                        "alert message =  " + message,
+                                        Toast.LENGTH_SHORT).show();
+                                result.confirm();
+                                return true;
+                            }
+                        }
+            mWebview.setWebChromeClient(new YourWebChromeClient());
+        }
+      getDataFromApp()
+      function getDataFromApp() {
+          const headerFormDataGet = {
+              'Content-Type' : 'application/json',
+              'Accept'       : 'application/json',
+              'Authorization': `Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnb3Btcy1qd3QiLCJzdWIiOiJ7XCJzdGFmZlNuXCI6MjA3LFwiaG90ZWxTblwiOjUxLFwicm9sZVNuXCI6MX0iLCJpYXQiOjE2NTUyODU5MjYsImV4cCI6MTY1NTM3MjMyNn0.8JtFw8UyS73ErrbhC8xi3ioa9gxScpRZRJ3Q-cLA74I`
+          }
+          const headerFormDataPost = {
+              'Content-Type' : 'multipart/form-data',
+              'Accept'       : 'multipart/form-data',
+              'Authorization': `Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnb3Btcy1qd3QiLCJzdWIiOiJ7XCJzdGFmZlNuXCI6MjA3LFwiaG90ZWxTblwiOjUxLFwicm9sZVNuXCI6MX0iLCJpYXQiOjE2NTUyODU5MjYsImV4cCI6MTY1NTM3MjMyNn0.8JtFw8UyS73ErrbhC8xi3ioa9gxScpRZRJ3Q-cLA74I`
+          }
+          axios.defaults.headers =  headerFormDataGet
+          axios.get("https://staging-api.gopms.io/api/v1/configuration/policy/getPolicy", {name: "data"}).then(function (response) {
+              console.log(response.data.data)
+          })
+      }
+      var isPercentage = true;
+      var prizes = [
+              {
+                text: "Áo thun Go2Joy",
+                img: "./src/assets/images/Ao.png",
+                number: 1000, // 1%,
+                percentpage: 0.02 // 20%
+              },
+              {
+                text: "Nón Go2Joy",
+                img: "./src/assets/images/Non.png",
+               number: 1000, // 1%,
+                percentpage: 0.02 // 20%
+              },
+              {
+                text: "Vòng Tay Go2Joy",
+                img: "./src/assets/images/Vong.png",
+                number : 1000,
+                percentpage: 0.01 // 10%
+              },
+              {
+                text: "Security Go2Joy",
+                img: "./src/assets/images/j2_logo.png",
+               number: 1000, // 1%,
+                percentpage: 0.01// 10%
+              },
+              {
+                text: "Có cái nịt",
+                img: "./src/assets/images/miss.png",
+               number: 1000, // 1%,
+                percentpage: 0.03 // 20%
+              },
+              {
+                text: "Quần Go2Joy",
+                img: "./src/assets/images/j2_logo.png",
+               number: 1000, // 1%,
+                percentpage: 0.01 // 10%
+              },
+              {
+                text: "Nịt Go2Joy",
+                img: "./src/assets/images/Vong.png",
+               number: 1000, // 1%,
+                percentpage: 0.01 // 10%
+              },
+            ];
+      document.addEventListener(
+        "DOMContentLoaded",
+        function() {
+          hcLuckywheel.init({
+            id: "luckywheel",
+            config: function(callback) {
+              callback &&
+                callback(prizes);
+            },
+            mode : "both",
+            getPrize: function(callback) {
+              var rand = randomIndex(prizes);
+              var chances = rand;
+              callback && callback([rand, chances]);
+            },
+            gotBack: function(data) {
+              if(data == null){
+                Swal.fire(
+                  'Chương trình kết thúc',
+                  'Đã hết phần thưởng',
+                  'error'
+                )
+              } else if (data == 'Có cái nịt'){
+                Swal.fire(
+                  'Bạn không trúng thưởng',
+                  data,
+                  'error'
+                )
+              } else{
+                Swal.fire(
+                  'Đã trúng giải',
+                  data,
+                  'success'
+                )
+              }
+            }
+          });
+        },
+        false
+      );
+      function randomIndex(prizes){
+        if(isPercentage){
+          var counter = 1;
+          for (let i = 0; i < prizes.length; i++) {
+            if(prizes[i].number == 0){
+              counter++
+            }
+          }
+          if(counter == prizes.length){
+            return null
+          }
+          let rand = Math.random();
+          let prizeIndex = 0;
+          switch (true) {
+            case rand < prizes[4].percentpage:
+              prizeIndex = 4 ;
+              break;
+            case rand < prizes[4].percentpage + prizes[3].percentpage:
+              prizeIndex = 3;
+              break;
+            case rand < prizes[4].percentpage + prizes[3].percentpage + prizes[2].percentpage:
+              prizeIndex = 2;
+              break;
+            case rand < prizes[4].percentpage + prizes[3].percentpage + prizes[2].percentpage + prizes[1].percentpage:
+              prizeIndex = 1;
+              break;  
+            case rand < prizes[4].percentpage + prizes[3].percentpage + prizes[2].percentpage + prizes[1].percentpage  + prizes[0].percentpage:
+              prizeIndex = 0;
+              break;  
+          }
+          if(prizes[prizeIndex].number !== 0){
+            prizes[prizeIndex].number = prizes[prizeIndex].number - 1
+            return prizeIndex
+          }else{
+            return randomIndex(prizes)
+          }
+        }else{
+          var counter = 0;
+          for (let i = 0; i < prizes.length; i++) {
+            if(prizes[i].number == 0){
+              counter++
+            }
+          }
+          if(counter == prizes.length){
+            return null
+          }
+          var rand = (Math.random() * (prizes.length)) >>> 0;
+          if(prizes[rand].number != 0){
+            prizes[rand].number = prizes[rand].number + 1
+            return rand
+          }else{
+            return randomIndex(prizes)
+          }
+        }
+      }
+    </script>
+  </body>
+</html>
