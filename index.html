@@ -3,16 +3,15 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Game show Lucky Wheel</title>
-    <link rel="stylesheet" href="css/typo/typo.css" />
+    <title>J2Team Community Offline</title>
     <link rel="stylesheet" href="css/hc-canvas-luckwheel.css" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"></script>
+
     <style>
       .hc-luckywheel {
         position:fixed;
         top: 50%;
-        left: 49%;
-        margin-top: -175px;
+        left: 50%;
+        margin-top: -250px;
         margin-left: -250px;
         width: 500px; /*Change this when change size*/
         height: 500px; /*Change this when change size*/
@@ -22,7 +21,165 @@
       }
       .wrapper {
         width: 100%;
-        height: 100% !important;
+        height: 100%
+      }
+      .g2j-basic-modal__section {
+        position: relative;
+        top: 50%;
+        -webkit-transform: translateY(-50%);
+        -ms-transform: translateY(-50%);
+        transform: translateY(-50%);
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+        z-index: 10;
+        min-height: 100px;
+        width: calc(100% - 32px);
+        background: #fff;
+        border-radius: 20px;
+      }
+      .g2j-basic-modal {
+          position: fixed;
+          left: 0;
+          top: 0;
+          height: 100%;
+          width: 100%;
+          z-index: 20;
+          cursor: default;
+          padding-bottom: 51px;
+      }
+      .g2j-basic-modal__bg {
+          position: absolute;
+          background: rgba(0,0,0,.5);
+          left: 0;
+          top: 0;
+          width: 100%;
+          height: 100%;
+          cursor: pointer;
+      }
+      .g2j-direct-app-notice-modal .section-head {
+          position: absolute;
+          top: 0;
+          right: 0;
+          z-index: 10;
+          width: auto;
+          border-bottom: none;
+      }
+      .g2j-basic-modal__section__head__title {
+          font-size: 2.5rem;
+          margin-right: 26px;
+      }
+      .g2j-basic-modal__section__head__close-btn {
+          display: flex;
+          flex: 0 0 48px;
+          width: 48px;
+          height: 48px;
+          align-items: center;
+          justify-content: center;
+          margin-left: auto;
+          cursor: pointer;
+          margin-right: 0px;
+          font-size: 2.5rem;
+      }
+      .g2j-basic-modal__section__head__close-btn:focus {
+        border: none;
+      }
+      .limit-text {
+        width: 180px;
+        max-height: 24px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        text-align: left;
+      }
+      .limit-line {
+        width: 185px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        line-height: 1.2;
+        -webkit-line-clamp: 2;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+      }
+      .g2j-basic-modal__section__head__close-btn img {
+        width: 20px;
+        height: 20px;
+      }
+
+      .g2j-direct-app-notice-modal .modal-section {
+        top: 50%;
+          position: relative;
+          border-radius: 16px;
+          overflow: hidden;
+          width: calc(100% - 32px);
+          max-width: 500px;
+          min-height: auto;
+      }
+      .g2j-basic-modal__section__body {
+          overflow: hidden;
+      }
+      .g2j-direct-app-notice-modal .section-body {
+          background: #fff5ee;
+          min-height: 100%;
+          padding: 32px 16px;
+      }
+      .g2j-direct-app-notice-modal__img-outer {
+          text-align: center;
+          margin-bottom: 8px;
+      }
+      .g2j-direct-app-notice-modal__content--title {
+          text-align: center;
+          font-weight: 700;
+          font-size: 18px;
+          color: #fd6500;
+      }
+      .g2j-direct-app-notice-modal__content--first {
+          text-align: center;
+          margin: 20px 17% 16px;
+      }
+      .g2j-direct-app-notice-modal__content--second {
+          text-align: center;
+          font-weight: 600;
+      }
+      .g2j-direct-app-notice-modal__container-group {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin-top: 16px;
+      }
+      .g2j-direct-app-notice-modal__container-group img {
+          margin-right: 8px;
+      }
+      .g2j-direct-app-notice-modal__btn-group {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-direction: column;
+      }
+      .g2j-direct-app-notice-modal__btn-item {
+          position: relative;
+          margin-bottom: 8px;
+          flex: 0 0 50%;
+          max-width: 120px;
+          border-radius: 8px;
+          overflow: hidden;
+      }
+      .g2j-direct-app-notice-modal__btn-item:before {
+          position: absolute;
+          content: "";
+          display: block;
+          background: #fff;
+          opacity: 0;
+          width: 100%;
+          height: 100%;
+          left: 0;
+          top: 0;
+      }
+      .g2j-direct-app-notice-modal__btn-item img {
+          vertical-align: bottom;
+      }
+      .g2j-direct-app-notice-modal__container-group img {
+          margin-right: 8px;
       }
       @media only screen and (max-width: 600px) {
         .hc-luckywheel {
@@ -64,8 +221,19 @@
           border-width: 15px;
         }
         .swal2-title {
-          font-size: 1.075em;
+          font-size: 14px;
         }
+        .hc-luckywheel-item span {
+          font-size: 12px;
+           width: 80px;
+        }
+        .hc-luckywheel-item img {
+          position: relative;
+          top: 7px;
+          left: 0px;
+          width: 67px;
+          height: 66px;
+        } /*Change this when change size*/
       }
       @media only screen and (max-width: 425px) {
         .hc-luckywheel {
@@ -75,6 +243,10 @@
           width: 300px;
           height: 300px;
           border: 12px solid #e44025;
+          
+        }
+        .hc-luckywheel-item span {
+          font-size: 10px;
         }
       }
       @media only screen and (max-width: 376px){
@@ -90,6 +262,7 @@
         .hc-luckywheel-btn::after {
           left: 2px;
         }
+        
       }   
     
       
@@ -111,7 +284,7 @@
       
     </style>
   </head>
-  <body class="bg" style="height:100vh !important;width: 100vw !important;">
+  <body class="bg" id="myModal" style="height: 100vh !important" >
     <div class="wrapper typo" id="wrapper">
       <section id="luckywheel" class="hc-luckywheel">
         <div class="hc-luckywheel-container">
@@ -122,70 +295,88 @@
         <a class="hc-luckywheel-btn" href="javascript:;">Xoay</a>
       </section>
     </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+  
     <script src="js/hc-canvas-luckwheel.js"></script>
     <script>
-      getDataFromApp()
-      function getDataFromApp() {
-          const headerFormDataGet = {
-              'Content-Type' : 'application/json',
-              'Accept'       : 'application/json',
-              'Authorization': `Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnb3Btcy1qd3QiLCJzdWIiOiJ7XCJzdGFmZlNuXCI6MjA3LFwiaG90ZWxTblwiOjUxLFwicm9sZVNuXCI6MX0iLCJpYXQiOjE2NTUyODU5MjYsImV4cCI6MTY1NTM3MjMyNn0.8JtFw8UyS73ErrbhC8xi3ioa9gxScpRZRJ3Q-cLA74I`
+       function getQueryParams(qs) {
+          qs = qs.split('+').join(' ');
+
+          var params = {},
+              tokens,
+              re = /[?&]?([^=]+)=([^&]*)/g;
+
+          while (tokens = re.exec(qs)) {
+              params[decodeURIComponent(tokens[1])] = decodeURIComponent(tokens[2]);
           }
-          const headerFormDataPost = {
-              'Content-Type' : 'multipart/form-data',
-              'Accept'       : 'multipart/form-data',
-              'Authorization': `Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnb3Btcy1qd3QiLCJzdWIiOiJ7XCJzdGFmZlNuXCI6MjA3LFwiaG90ZWxTblwiOjUxLFwicm9sZVNuXCI6MX0iLCJpYXQiOjE2NTUyODU5MjYsImV4cCI6MTY1NTM3MjMyNn0.8JtFw8UyS73ErrbhC8xi3ioa9gxScpRZRJ3Q-cLA74I`
-          }
-          axios.defaults.headers =  headerFormDataGet
-          axios.get("https://staging-api.gopms.io/api/v1/configuration/policy/getPolicy", {name: "data"}).then(function (response) {
-              console.log(response.data.data)
-          })
+          console.log('params 1',params)
+          return params;
       }
+      console.log('getQueryParams 2',getQueryParams( window.location.search))
+
+      
+      function parseQueryString(query) {
+          var vars = query.split("&");
+          var params = {};
+          for (var i = 0; i < vars.length; i++) {
+            var pair = vars[i].split("=");
+            var key = decodeURIComponent(pair.shift());
+            var value = decodeURIComponent(pair.join("="));
+            // If first entry with this name
+            if (typeof params[key] === "undefined") {
+              params[key] = value;
+              // If second entry with this name
+            } else if (typeof params[key] === "string") {
+              var arr = [params[key], value];
+              params[key] = arr;
+              // If third or later entry with this name
+            } else {
+              params[key].push(value);
+            }
+          }
+          return params;
+        }
+        var params =  window.location.search;
+        var parsedQs = parseQueryString(params);
+        console.log('parsedQs',parsedQs);
+
+        
       var isPercentage = true;
       var prizes = [
               {
-                text: "Áo thun Go2Joy",
-                img: "images/Ao.png",
-                number: 1000, // 1%,
-                percentpage: 0.02 // 20%
+                text: "Áo thun J2Team", // nội dung giải thưởng
+                img: "images/Ao.png", // image
+                number: 100, // số lượng giải,
+                percentpage: 0.4 // 2% trúng thưởng
               },
               {
-                text: "Nón Go2Joy",
+                text: "Nón J2 Team",
                 img: "images/Non.png",
-               number: 1000, // 1%,
-                percentpage: 0.02 // 20%
+                number: 100,
+                percentpage: 0.001 // 5%
               },
               {
-                text: "Vòng Tay Go2Joy",
+                text: "Vòng Tay J2Team",
                 img: "images/Vong.png",
-                number : 1000,
-                percentpage: 0.01 // 10%
+                number : 100,
+                percentpage: 0.001 // 2%
               },
               {
-                text: "Security Go2Joy",
+                text: "J2Team Security",
                 img: "images/j2_logo.png",
-               number: 1000, // 1%,
-                percentpage: 0.01// 10%
+                number: 100,
+                percentpage: 0.001 // 2%
               },
               {
-                text: "Có cái nịt",
                 img: "images/miss.png",
-               number: 1000, // 1%,
-                percentpage: 0.03 // 20%
+                text: "Có cái nịt",
+                number: 100,
+                percentpage: 0.01 // 10%
               },
               {
-                text: "Quần Go2Joy",
+                text: "J2Team Quần",
                 img: "images/j2_logo.png",
-               number: 1000, // 1%,
-                percentpage: 0.01 // 10%
-              },
-              {
-                text: "Nịt Go2Joy",
-                img: "images/Vong.png",
-               number: 1000, // 1%,
-                percentpage: 0.01 // 10%
+                number: 100,
+                percentpage: 0.002 // 1%
               },
             ];
       document.addEventListener(
@@ -204,31 +395,113 @@
               callback && callback([rand, chances]);
             },
             gotBack: function(data) {
-              if(data == null){
-                Swal.fire(
-                  'Chương trình kết thúc',
-                  'Đã hết phần thưởng',
-                  'error'
-                )
+              console.log('data gotBack',data)
+              
+              if(data == null){ 
+                document.getElementById("myModal").innerHTML += `<div class="modal" id="myModal-down-app">
+                <div class="g2j-basic-modal g2j-direct-app-notice-modal">
+                    <div class="g2j-basic-modal__bg modal-bg"> </div>
+                      <div class="g2j-basic-modal__section modal-section">
+                      <div class="g2j-basic-modal__section__head section-head">
+                          <div class="g2j-basic-modal__section__head__title head-title"> </div>
+                          <div class="g2j-basic-modal__section__head__close-btn close" >
+                                <span class="close " data-dismiss="modal">
+                                  <img src="https://go2joy.vn/image/remove3.webp" alt="">
+                                </span>
+                          </div>
+                          </div>
+                      <div class="g2j-basic-modal__section__body section-body scroll-bar-custom">
+                      <div class="g2j-direct-app-notice-modal__img-outer" >
+                            <img class="g2j-direct-app-notice-modal__img" src="https://go2joy.vn/image/bg/direct-app-notice-img.png" alt="Chương trình đã kết thúc" />
+                          </div>
+                          <h2 class="g2j-direct-app-notice-modal__content--title">Chương trình đã kết thúc</h2>
+                          <div class="g2j-direct-app-notice-modal__content--second"> Tải Ứng dụng Go2Joy tại đây</div>
+                          <div class="g2j-direct-app-notice-modal__container-group">
+                          <img src="https://go2joy.vn/image/qrcode.svg" alt="QR Go2Joy App" height="85px" width="85px" />
+                          <div class="g2j-direct-app-notice-modal__btn-group">
+                            
+                          </div>
+                          </div>
+                      </div>
+                    </div>
+                </div>
+              </div>`;
+              
               } else if (data == 'Có cái nịt'){
-                Swal.fire(
-                  'Bạn không trúng thưởng',
-                  data,
-                  'error'
-                )
+                console.log('Bạn không trúng thưởng')
+                document.getElementById("myModal").innerHTML += `<div class="modal" id="myModal-down-app">
+                <div class="g2j-basic-modal g2j-direct-app-notice-modal">
+                    <div class="g2j-basic-modal__bg modal-bg"> </div>
+                      <div class="g2j-basic-modal__section modal-section">
+                      <div class="g2j-basic-modal__section__head section-head">
+                          <div class="g2j-basic-modal__section__head__title head-title"> </div>
+                          <div class="g2j-basic-modal__section__head__close-btn close" >
+                                <span class="close " data-dismiss="modal">
+                                  <img src="https://go2joy.vn/image/remove3.webp" alt="">
+                                </span>
+                          </div>
+                          </div>
+                      <div class="g2j-basic-modal__section__body section-body scroll-bar-custom">
+                      <div class="g2j-direct-app-notice-modal__img-outer" >
+                            <img class="g2j-direct-app-notice-modal__img" src="https://go2joy.vn/image/bg/direct-app-notice-img.png" alt="Bạn không trúng thưởng" />
+                          </div>
+                          <h2 class="g2j-direct-app-notice-modal__content--title">"Mời bạn truy cập ứng dụng Go2Joy để nhận ưu đãi</h2>
+                          <div class="g2j-direct-app-notice-modal__content--second">Bạn không trúng thưởng</div>
+                          <div class="g2j-direct-app-notice-modal__container-group">
+                          <img src="https://go2joy.vn/image/qrcode.svg" alt="QR Go2Joy App" height="85px" width="85px" />
+                          <div class="g2j-direct-app-notice-modal__btn-group">
+                            
+                          </div>
+                          </div>
+                      </div>
+                    </div>
+                </div>
+              </div>`;
               } else{
-                Swal.fire(
-                  'Đã trúng giải',
-                  data,
-                  'success'
-                )
+                console.log('Đã trúng giải')
+                
+                document.getElementById("myModal").innerHTML += `<div class="modal" id="myModal-down-app">
+                <div class="g2j-basic-modal g2j-direct-app-notice-modal">
+                    <div class="g2j-basic-modal__bg modal-bg"> </div>
+                      <div class="g2j-basic-modal__section modal-section">
+                      <div class="g2j-basic-modal__section__head section-head">
+                          <div class="g2j-basic-modal__section__head__title head-title"> </div>
+                          <div class="g2j-basic-modal__section__head__close-btn close" >
+                                <span class="close " data-dismiss="modal">
+                                  <img src="https://go2joy.vn/image/remove3.webp" alt="">
+                                </span>
+                          </div>
+                          </div>
+                      <div class="g2j-basic-modal__section__body section-body scroll-bar-custom">
+                      <div class="g2j-direct-app-notice-modal__img-outer" >
+                            <img class="g2j-direct-app-notice-modal__img" src="https://go2joy.vn/image/bg/direct-app-notice-img.png" alt="Mời bạn truy cập ứng dụng Go2Joy để nhận ưu đãi" />
+                          </div>
+                          <h2 class="g2j-direct-app-notice-modal__content--title">Mời bạn truy cập ứng dụng Go2Joy để nhận ưu đãi</h2>
+                          <div class="g2j-direct-app-notice-modal__content--second"> ${data}</div>
+                          <div class="g2j-direct-app-notice-modal__container-group">
+                          <img src="https://go2joy.vn/image/qrcode.svg" alt="QR Go2Joy App" height="85px" width="85px" />
+                          <div class="g2j-direct-app-notice-modal__btn-group">
+                            
+                          </div>
+                          </div>
+                      </div>
+                    </div>
+                </div>
+              </div>`;
               }
+              const dialog = document.querySelector('.g2j-basic-modal');
+              const closeButton = document.querySelector('.close');
+                closeButton.addEventListener('click', () => {
+                    dialog.style.display = 'none';
+                });
+              const btn = document.querySelector(".hc-luckywheel-btn");
             }
           });
         },
         false
       );
       function randomIndex(prizes){
+        console.log('prizes',prizes)
         if(isPercentage){
           var counter = 1;
           for (let i = 0; i < prizes.length; i++) {
@@ -240,7 +513,7 @@
             return null
           }
           let rand = Math.random();
-          let prizeIndex = 0;
+          let prizeIndex = null;
           switch (true) {
             case rand < prizes[4].percentpage:
               prizeIndex = 4 ;
@@ -258,8 +531,9 @@
               prizeIndex = 0;
               break;  
           }
-          if(prizes[prizeIndex].number !== 0){
-            prizes[prizeIndex].number = prizes[prizeIndex].number - 1
+          console.log('prizes[prizeIndex]',prizes[prizeIndex])
+          if(prizes[prizeIndex]?.number != 0){
+            //prizes[prizeIndex].number = prizes[prizeIndex].number - 1
             return prizeIndex
           }else{
             return randomIndex(prizes)
@@ -276,7 +550,7 @@
           }
           var rand = (Math.random() * (prizes.length)) >>> 0;
           if(prizes[rand].number != 0){
-            prizes[rand].number = prizes[rand].number + 1
+            prizes[rand].number = prizes[rand].number - 1
             return rand
           }else{
             return randomIndex(prizes)

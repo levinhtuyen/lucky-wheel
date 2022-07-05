@@ -1,4 +1,4 @@
-(function() {
+(function () {
   var $,
     ele,
     container,
@@ -18,12 +18,12 @@
       Webkit: "webkit",
       Moz: "",
       O: "o",
-      ms: "ms"
+      ms: "ms",
     },
     testEle = document.createElement("p"),
     cssSupport = {};
 
-  Object.keys(vendors).some(function(vendor) {
+  Object.keys(vendors).some(function (vendor) {
     if (
       testEle.style[vendor + (vendor ? "T" : "t") + "ransitionProperty"] !==
       undefined
@@ -54,7 +54,7 @@
   cssSupport = {
     cssPrefix: cssPrefix,
     transform: normalizeCss("Transform"),
-    transitionEnd: normalizeEvent("TransitionEnd")
+    transitionEnd: normalizeEvent("TransitionEnd"),
   };
 
   var transform = cssSupport.transform;
@@ -63,10 +63,12 @@
   // alert(transform);
   // alert(transitionEnd);
 
-  function init(opts) {
+  function init (opts) {
+    console.log('opts',opts)
     fnGetPrize = opts.getPrize;
     fnGotBack = opts.gotBack;
-    opts.config(function(data) {
+    opts.config(function (data) {
+      console.log(data)
       prizes = opts.prizes = data;
       num = prizes.length;
       draw(opts);
@@ -78,11 +80,12 @@
    * @param  {String} id
    * @return {Object} HTML element
    */
-  $ = function(id) {
+  $ = function (id) {
     return document.getElementById(id);
   };
 
-  function draw(opts) {
+  function draw (opts) {
+    console.log('opts2',opts)
     opts = opts || {};
     if (!opts.id || num >>> 0 === 0) return;
 
@@ -113,9 +116,9 @@
       ctx.rotate((((360 / num) * i - rotateDeg) * Math.PI) / 180);
       ctx.arc(0, 0, 250, 0, (2 * Math.PI) / num, false); // Radius
       if (i % 2 == 0) {
-        ctx.fillStyle = "#ffb820";
+        ctx.fillStyle = "#fbf0ce";
       } else {
-        ctx.fillStyle = "#ffcb3f";
+        ctx.fillStyle = "#ffffff";
       }
       ctx.fill();
       ctx.lineWidth = 1;
@@ -126,12 +129,12 @@
       html.push('<li class="hc-luckywheel-item"> <span style="');
       html.push(transform + ": rotate(" + i * turnNum + 'turn)">');
       if (opts.mode == "both") {
-        html.push("<p id='curve'>" + prizeList[i].text + "</p>");
         html.push('<img src="' + prizeList[i].img + '" />');
+        html.push("<span id='curve'>" + prizeList[i].text + "</span>");
       } else if (prizeList[i].img) {
         html.push('<img src="' + prizeList[i].img + '" />');
       } else {
-        html.push('<p id="curve">' + prizeList[i].text + "</p>");
+        html.push('<span id="curve">' + prizeList[i].text + "</span>");
       }
       html.push("</span> </li>");
       if (i + 1 === num) {
@@ -164,17 +167,17 @@
    * @return {[type]} [description]
    */
   function events() {
-    bind(btn, "click", function() {
-
+    bind(btn, "click", function () {
+      console.log('btn',btn)
       addClass(btn, "disabled");
 
-      fnGetPrize(function(data) {
+      fnGetPrize(function (data) {
         if (data[0] == null && !data[1] == null) {
           return;
         }
         optsPrize = {
           prizeId: data[0],
-          chances: data[1]
+          chances: data[1],
         };
         deg = deg || 0;
         deg = deg + (360 - (deg % 360)) + (360 * 10 - data[0] * (360 / num));
@@ -232,7 +235,9 @@
   }
 
   // removeClass
-  function removeClass(ele, cls) {
+  function removeClass (ele, cls) {
+    console.log('ele :>> ', ele);
+    console.log('cls :>> ', cls);
     if (ele.classList) {
       ele.classList.remove(cls);
     } else {
@@ -247,15 +252,15 @@
   }
 
   var hcLuckywheel = {
-    init: function(opts) {
+    init: function (opts) {
       return init(opts);
-    }
+    },
   };
 
   window.hcLuckywheel === undefined && (window.hcLuckywheel = hcLuckywheel);
 
   if (typeof define == "function" && define.amd) {
-    define("HellCat-Luckywheel", [], function() {
+    define("HellCat-Luckywheel", [], function () {
       return hcLuckywheel;
     });
   }
