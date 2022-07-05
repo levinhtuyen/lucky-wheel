@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>J2Team Community Offline</title>
+    <link rel="stylesheet" href="css/typo/typo.css" />
     <link rel="stylesheet" href="css/hc-canvas-luckwheel.css" />
 
     <style>
@@ -181,6 +182,39 @@
       .g2j-direct-app-notice-modal__container-group img {
           margin-right: 8px;
       }
+      @media only screen and (max-width: 769px) {
+        .hc-luckywheel {
+            position:fixed;
+            top: 50%;
+            left: 50%;
+            margin-top: -125px;
+            margin-left: -250px;
+            width: 400px; /*Change this when change size*/
+            height: 400px; /*Change this when change size*/
+            border-radius: 50%;
+            border: 16px solid #e44025;
+            box-shadow: 0 2px 3px #333, 0 0 2px #000;
+          }
+        .hc-luckywheel-item span {
+        /* width: 50px; */
+        position: relative;
+        display: block;
+        /* padding-top: 20px; */
+        width: 100px;
+        margin: 0 auto;
+        text-align: center;
+        transform-origin: 50% 250px;
+        text-transform: uppercase;
+        -webkit-transform-origin: 50% 250px;
+        -ms-transform-origin: 50% 250px;
+        transform-origin: 50% 204px;
+        }
+        .hc-luckywheel-btn {
+          position: absolute;
+          left: 162px;
+          top: 151px;
+        }
+      }
       @media only screen and (max-width: 600px) {
         .hc-luckywheel {
           width: 350px;
@@ -204,10 +238,10 @@
           font-size:12px; 
         }
         .hc-luckywheel-btn {
-          left: 134px;
-          top: 134px;
-          width: 36px;
-          height: 36px;
+          left: 110px;
+          top: 100px;
+          width: 82px;
+          height: 80px;
           line-height: 36px;
           text-align: center;
           font-size: 12px;
@@ -225,7 +259,7 @@
         }
         .hc-luckywheel-item span {
           font-size: 12px;
-           width: 80px;
+          width: 80px;
         }
         .hc-luckywheel-item img {
           position: relative;
@@ -235,9 +269,9 @@
           height: 66px;
         } /*Change this when change size*/
       }
-      @media only screen and (max-width: 425px) {
+      @media only screen and (max-width: 426px) {
         .hc-luckywheel {
-          top: 10%;
+          top: 37%;
           left: 12%;
           margin:0;
           width: 300px;
@@ -248,39 +282,55 @@
         .hc-luckywheel-item span {
           font-size: 10px;
         }
+        .hc-luckywheel-btn {
+          left: 110px;
+          top: 100px;
+          width: 85px;
+          height: 80px;
+          line-height: 36px;
+          text-align: center;
+          font-size: 12px;
+        }
       }
       @media only screen and (max-width: 376px){
         .hc-luckywheel {
           width: 300px;
           height: 300px;
-          left: 6.5%;
+          left: 7%;
         }
         .hc-luckywheel-btn {
-          width: 34px;
-          height: 34px;
+          left: 110px;
+          top: 100px;
+          width: 82px;
+          height: 80px;
+          line-height: 36px;
+          text-align: center;
+          font-size: 12px;
         }
-        .hc-luckywheel-btn::after {
-          left: 2px;
-        }
+       
         
       }   
     
       
       @media only screen and (max-width: 321px){
         .hc-luckywheel {
-          width: 290px;
-          height: 290px;
-          left: 1%;
+          width: 250px;
+          height: 250px;
+          left: 6.5%;
         }
         .hc-luckywheel-btn {
-            width: 35px;
-            height: 35px;
+            left: 93px;
+            top: 82px;
+            width: 67px;
+            height: 67px;
+            line-height: 36px;
+            text-align: center;
+            font-size: 12px;
         }
-        .hc-luckywheel-btn {
-          left: 129px;
-          top: 128px;
+        .hc-luckywheel-item span {
+          transform-origin: 50% 125px;
         }
-      }
+      } 
       
     </style>
   </head>
@@ -292,13 +342,15 @@
             >Vòng Xoay May Mắn</canvas
           >
         </div>
-        <a class="hc-luckywheel-btn" href="javascript:;">Xoay</a>
+        <a class="hc-luckywheel-btn" href="javascript:;">
+          <img src="images/luckywheel-09.png" />
+        </a>
       </section>
     </div>
   
     <script src="js/hc-canvas-luckwheel.js"></script>
     <script>
-       function getQueryParams(qs) {
+      function getQueryParams(qs) {
           qs = qs.split('+').join(' ');
 
           var params = {},
@@ -337,48 +389,53 @@
         }
         var params =  window.location.search;
         var parsedQs = parseQueryString(params);
-        console.log('parsedQs',parsedQs);
 
         
       var isPercentage = true;
       var prizes = [
-              {
-                text: "Áo thun J2Team", // nội dung giải thưởng
-                img: "images/Ao.png", // image
-                number: 100, // số lượng giải,
-                percentpage: 0.4 // 2% trúng thưởng
-              },
-              {
-                text: "Nón J2 Team",
-                img: "images/Non.png",
-                number: 100,
-                percentpage: 0.001 // 5%
-              },
-              {
-                text: "Vòng Tay J2Team",
-                img: "images/Vong.png",
-                number : 100,
-                percentpage: 0.001 // 2%
-              },
-              {
-                text: "J2Team Security",
-                img: "images/j2_logo.png",
-                number: 100,
-                percentpage: 0.001 // 2%
-              },
-              {
-                img: "images/miss.png",
-                text: "Có cái nịt",
-                number: 100,
-                percentpage: 0.01 // 10%
-              },
-              {
-                text: "J2Team Quần",
-                img: "images/j2_logo.png",
-                number: 100,
-                percentpage: 0.002 // 1%
-              },
-            ];
+        {
+          text: "", // nội dung giải thưởng
+          img: "images/luckywheel-11.png", // image
+          number: 100, // số lượng giải,
+          percentpage: 0.4 // 2% trúng thưởng
+        },
+        {
+          text: "",
+          img: "images/luckywheel-11.png",
+          number: 100,
+          percentpage: 0.001 // 5%
+        },
+        {
+          text: "",
+          img: "images/luckywheel-22.png",
+          number : 100,
+          percentpage: 0.001 // 2%
+        },
+        {
+          text: "",
+          img: "images/luckywheel-33.png",
+          number: 100,
+          percentpage: 0.001 // 2%
+        },
+        {
+          text: "",
+          img: "images/luckywheel-44.png",
+          number: 100,
+          percentpage: 0.01 // 10%
+        },
+        {
+          text: "",
+          img: "images/luckywheel-11.png",
+          number: 100,
+          percentpage: 0.001 // 1%
+        },
+        {
+          text: "",
+          img: "images/luckywheel-00.png",
+          number: 100,
+          percentpage: 0.001 // 1%
+        },
+      ];
       document.addEventListener(
         "DOMContentLoaded",
         function() {
@@ -395,7 +452,6 @@
               callback && callback([rand, chances]);
             },
             gotBack: function(data) {
-              console.log('data gotBack',data)
               
               if(data == null){ 
                 document.getElementById("myModal").innerHTML += `<div class="modal" id="myModal-down-app">
@@ -493,15 +549,16 @@
               const closeButton = document.querySelector('.close');
                 closeButton.addEventListener('click', () => {
                     dialog.style.display = 'none';
+                    window.location.reload()
                 });
-              const btn = document.querySelector(".hc-luckywheel-btn");
+              
+              
             }
           });
         },
         false
       );
       function randomIndex(prizes){
-        console.log('prizes',prizes)
         if(isPercentage){
           var counter = 1;
           for (let i = 0; i < prizes.length; i++) {
@@ -531,9 +588,8 @@
               prizeIndex = 0;
               break;  
           }
-          console.log('prizes[prizeIndex]',prizes[prizeIndex])
-          if(prizes[prizeIndex]?.number != 0){
-            //prizes[prizeIndex].number = prizes[prizeIndex].number - 1
+          if(prizes[prizeIndex] && prizes[prizeIndex].number != 0){
+            prizes[prizeIndex].number = prizes[prizeIndex].number - 1
             return prizeIndex
           }else{
             return randomIndex(prizes)
