@@ -115,10 +115,7 @@
       ctx.moveTo(0, 0);
       ctx.rotate((((360 / num) * i - rotateDeg) * Math.PI) / 180);
       ctx.arc(0, 0, 250, 0, (2 * Math.PI) / num, false); // Radius
-      if (i === 6) {
-        ctx.fillStyle = "#b1b1b1";
-      }
-      else if (i % 2 == 0 && i != 7) {
+      if (i % 2 == 0 && i != 7) {
         ctx.fillStyle = "#fbf0ce";
       } else {
         ctx.fillStyle = "#ffffff";

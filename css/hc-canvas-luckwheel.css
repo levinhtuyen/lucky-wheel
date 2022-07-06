@@ -64,7 +64,7 @@
   text-align: center; */
   -webkit-transform-origin: 50% 250px; /*Change this when change size*/
   -ms-transform-origin: 50% 250px; /*Change this when change size*/
-  transform-origin: 50% 250px;
+  transform-origin: 50% 200px;
 } /*Change this when change size*/
 
 .hc-luckywheel-item img {
@@ -77,8 +77,8 @@
 
 .hc-luckywheel-btn {
   position: absolute;
-  left: 210px; /*Change this when change size*/
-  top: 200px; /*Change this when change size*/
+  left: 162px;
+    top: 150px;
   z-index: 3;
   width: 80px;
   height: 100px;

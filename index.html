@@ -3,7 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>J2Team Community Offline</title>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta name="description" content="SĂN SALE THÁNG 7 - ĐẶT 1 LẦN, HƯỞNG BỘI LẦN">
+    <meta property="og:image" content="" />
+    <meta property="og:url" content="" />
+    <title>VÒNG XOAY SIÊU GIẢM</title>
+    <link href="images/favicon.png" rel="icon">
     <link rel="stylesheet" href="css/typo/typo.css" />
     <link rel="stylesheet" href="css/hc-canvas-luckwheel.css" />
 
@@ -12,10 +17,10 @@
         position:fixed;
         top: 50%;
         left: 50%;
-        margin-top: -250px;
-        margin-left: -250px;
-        width: 500px; /*Change this when change size*/
-        height: 500px; /*Change this when change size*/
+        margin-top: -100px;
+        margin-left: -220px;
+        width: 400px; /*Change this when change size*/
+        height: 400px; /*Change this when change size*/
         border-radius: 50%;
         border: 16px solid #e44025;
         box-shadow: 0 2px 3px #333, 0 0 2px #000;
@@ -182,37 +187,81 @@
       .g2j-direct-app-notice-modal__container-group img {
           margin-right: 8px;
       }
-      @media only screen and (max-width: 769px) {
+      @media only screen and (max-width: 1025px) {
         .hc-luckywheel {
             position:fixed;
             top: 50%;
             left: 50%;
-            margin-top: -125px;
-            margin-left: -250px;
-            width: 400px; /*Change this when change size*/
-            height: 400px; /*Change this when change size*/
+            margin-top: -110px;
+            margin-left: -130px;
+            width: 365px;
+            height: 365px;
             border-radius: 50%;
             border: 16px solid #e44025;
             box-shadow: 0 2px 3px #333, 0 0 2px #000;
           }
         .hc-luckywheel-item span {
         /* width: 50px; */
-        position: relative;
-        display: block;
-        /* padding-top: 20px; */
-        width: 100px;
-        margin: 0 auto;
-        text-align: center;
-        transform-origin: 50% 250px;
-        text-transform: uppercase;
-        -webkit-transform-origin: 50% 250px;
-        -ms-transform-origin: 50% 250px;
-        transform-origin: 50% 204px;
+          position: relative;
+          display: block;
+          /* padding-top: 20px; */
+          width: 100px;
+          margin: 0 auto;
+          text-align: center;
+          transform-origin: 50% 250px;
+          text-transform: uppercase;
+          -webkit-transform-origin: 50% 250px;
+          -ms-transform-origin: 50% 250px;
+          transform-origin: 50% 180px;
+          }
+        .hc-luckywheel-btn {
+            position: absolute;
+            left: 147px;
+            top: 139px;
+            width: 75px;
+            height: 75px;
+        }
+      }
+      @media only screen and (max-width: 769px) {
+        .hc-luckywheel {
+            position:fixed;
+            top: 50%;
+            left: 50%;
+            margin-top: -125px;
+            margin-left: -190px;
+            width: 350px; /*Change this when change size*/
+            height: 350px; /*Change this when change size*/
+            border-radius: 50%;
+            border: 16px solid #e44025;
+            box-shadow: 0 2px 3px #333, 0 0 2px #000;
+          }
+        .hc-luckywheel-item span {
+          /* width: 50px; */
+          position: relative;
+          display: block;
+          /* padding-top: 20px; */
+          width: 100px;
+          margin: 0 auto;
+          text-align: center;
+          transform-origin: 50% 250px;
+          text-transform: uppercase;
+          -webkit-transform-origin: 50% 250px;
+          -ms-transform-origin: 50% 250px;
+          transform-origin: 50% 172px;
         }
         .hc-luckywheel-btn {
           position: absolute;
-          left: 162px;
-          top: 151px;
+          left: 143px;
+          top: 131px;
+          width: 70px;
+          height: 70px;
+        }
+        .hc-luckywheel-item img {
+            position: relative;
+            top: 0px;
+            left: 0px;
+            width: 90px;
+            height: 90px;
         }
       }
       @media only screen and (max-width: 600px) {
@@ -310,8 +359,6 @@
        
         
       }   
-    
-      
       @media only screen and (max-width: 321px){
         .hc-luckywheel {
           width: 250px;
@@ -397,25 +444,19 @@
           text: "", // nội dung giải thưởng
           img: "images/luckywheel-11.png", // image
           number: 100, // số lượng giải,
-          percentpage: 0.4 // 2% trúng thưởng
-        },
-        {
-          text: "",
-          img: "images/luckywheel-11.png",
-          number: 100,
-          percentpage: 0.001 // 5%
+          percentpage: 0.5 // 50% trúng thưởng
         },
         {
           text: "",
           img: "images/luckywheel-22.png",
           number : 100,
-          percentpage: 0.001 // 2%
+          percentpage: 0.01 // 10%
         },
         {
           text: "",
           img: "images/luckywheel-33.png",
           number: 100,
-          percentpage: 0.001 // 2%
+          percentpage: 0.01 // 10%
         },
         {
           text: "",
@@ -427,13 +468,13 @@
           text: "",
           img: "images/luckywheel-11.png",
           number: 100,
-          percentpage: 0.001 // 1%
+          percentpage: 0.001 // 10%
         },
         {
           text: "",
           img: "images/luckywheel-00.png",
           number: 100,
-          percentpage: 0.001 // 1%
+          percentpage: 0.001 // 10%
         },
       ];
       document.addEventListener(
