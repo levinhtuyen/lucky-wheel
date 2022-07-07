@@ -64,11 +64,10 @@
   // alert(transitionEnd);
 
   function init (opts) {
-    console.log('opts',opts)
     fnGetPrize = opts.getPrize;
     fnGotBack = opts.gotBack;
     opts.config(function (data) {
-      console.log(data)
+
       prizes = opts.prizes = data;
       num = prizes.length;
       draw(opts);
@@ -85,7 +84,6 @@
   };
 
   function draw (opts) {
-    console.log('opts2',opts)
     opts = opts || {};
     if (!opts.id || num >>> 0 === 0) return;
 
@@ -129,10 +127,10 @@
       html.push('<li class="hc-luckywheel-item"> <span style="');
       html.push(transform + ": rotate(" + i * turnNum + 'turn)">');
       if (opts.mode == "both") {
-        html.push('<img src="' + prizeList[i].img + '" />');
-        html.push("<span id='curve'>" + prizeList[i].text + "</span>");
+        html.push('<img src="https://go2joy.s3.ap-southeast-1.amazonaws.com' + prizeList[i].img + '" />');
+        //html.push("<span id='curve'>" + prizeList[i].text + "</span>");
       } else if (prizeList[i].img) {
-        html.push('<img src="' + prizeList[i].img + '" />');
+        html.push('<img src="https://go2joy.s3.ap-southeast-1.amazonaws.com' + prizeList[i].img + '" />');
       } else {
         html.push('<span id="curve">' + prizeList[i].text + "</span>");
       }
@@ -168,11 +166,9 @@
    */
   function events() {
     bind(btn, "click", function () {
-      console.log('btn',btn)
       addClass(btn, "disabled");
 
       fnGetPrize(function (data) {
-        console.log('data events :>> ', data);
         if (data[0] == null && !data[1] == null) {
           return;
         }
@@ -189,12 +185,11 @@
   }
 
   function eGot () {
-    console.log('optsPrize 1233 :>> ', optsPrize);
     if (optsPrize.chances == null) {
       return fnGotBack(null);
     } else {
       removeClass(btn, "disabled");
-      return fnGotBack(prizes[optsPrize.prizeId].text);
+      return fnGotBack(prizes[optsPrize.prizeId]);
     }
   }
 
@@ -204,7 +199,7 @@
    * @param {Event}     event  Event to detach
    * @param {Function}  fn     Callback function
    */
-  function bind(ele, event, fn) {
+  function bind (ele, event, fn) {
     if (typeof addEventListener === "function") {
       ele.addEventListener(event, fn, false);
     } else if (ele.attachEvent) {
@@ -238,8 +233,7 @@
 
   // removeClass
   function removeClass (ele, cls) {
-    console.log('ele :>> ', ele);
-    console.log('cls :>> ', cls);
+
     if (ele.classList) {
       ele.classList.remove(cls);
     } else {

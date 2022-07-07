@@ -11,8 +11,16 @@
     <link href="images/favicon.png" rel="icon">
     <link rel="stylesheet" href="css/typo/typo.css" />
     <link rel="stylesheet" href="css/hc-canvas-luckwheel.css" />
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"></script>
     <style>
+      .bg-ref {
+          background-image: url('images/ref-lucky-wheel.jpg');
+          background-position: center center;
+          background-repeat: no-repeat;
+          background-attachment: fixed;
+          background-size: cover;
+          background-color: #464646;
+      }
       .hc-luckywheel {
         position:fixed;
         top: 50%;
@@ -143,9 +151,18 @@
           text-align: center;
           margin: 20px 17% 16px;
       }
-      .g2j-direct-app-notice-modal__content--second {
-          text-align: center;
-          font-weight: 600;
+
+      .g2j-direct-app-notice-modal__content--second{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .g2j-direct-app-notice-modal__content--second img{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        max-width: 250px;
+        height: auto;
       }
       .g2j-direct-app-notice-modal__container-group {
           display: flex;
@@ -221,6 +238,14 @@
             width: 75px;
             height: 75px;
         }
+        .bg-ref {
+          background-image: url('images/ref-lucky-wheel.jpg');
+          background-position: center center;
+          background-repeat: no-repeat;
+          background-attachment: fixed;
+          background-size: cover;
+          background-color: #464646;
+        }
       }
       @media only screen and (max-width: 769px) {
         .hc-luckywheel {
@@ -270,6 +295,14 @@
             background-attachment: fixed;
             background-size: cover;
             background-color: #464646;
+        }
+        .bg-ref {
+          background-image: url('images/ref-lucky-wheel.jpg');
+          background-position: center center;
+          background-repeat: no-repeat;
+          background-attachment: fixed;
+          background-size: cover;
+          background-color: #464646;
         }
       }
       @media only screen and (max-width: 600px) {
@@ -356,6 +389,14 @@
           background-size: cover;
           background-color: #464646;
         }
+        .bg-ref {
+          background-image: url('images/ref-lucky-wheel.jpg');
+          background-position: center center;
+          background-repeat: no-repeat;
+          background-attachment: fixed;
+          background-size: cover;
+          background-color: #464646;
+        }
       }
       @media only screen and (max-width: 376px){
         .hc-luckywheel {
@@ -411,213 +452,88 @@
       </section>
     </div>
   
-    <script src="js/hc-canvas-luckwheel.js"></script>
+    
     <script>
-      function getQueryParams(qs) {
-          qs = qs.split('+').join(' ');
+    checkDataFromApi()
+    async function checkDataFromApi () {
+        const headerFormDataGet = {
+            'Authorization' : 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJsYXJhdmVsLWp3dCIsInN1YiI6IntcInNjb3BlXCI6XCJtb2JpbGVcIixcImFwcFVzZXJTblwiOjQwNDM2NyxcInJlYWRBZ3JlZVBvbGljeVwiOjF9IiwiaWF0IjoxNjU3MDcyNjgwLCJleHAiOjE2ODA3NDYyODB9.OZ3Y4BPlrSDbo9KtT4l8jRPAWGsEwYoAK_gjWTYfOJw',
+            'Device-Encode' : '93b5a7a8702a6e75b3e2bbc1b3b2fb8c',
+            'Secret-Code': '7bc79fa5139b8266e12993014bb68911'
+        }
+        axios.defaults.headers =  headerFormDataGet
+        var result = await axios.get("https://staging-api.go2joy.vn/api/v3/mobile/reward/checkUserConditionLuckyWheel", {name: "data"}).then(function (response) {
+            console.log(response.data.data)
+            return response.data.data
+        })
+        return result
+    }
+    async function getDataFromApi () {
+        const headerFormDataGet = {
+            'Authorization' : 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJsYXJhdmVsLWp3dCIsInN1YiI6IntcInNjb3BlXCI6XCJtb2JpbGVcIixcImFwcFVzZXJTblwiOjQwNDM2NyxcInJlYWRBZ3JlZVBvbGljeVwiOjF9IiwiaWF0IjoxNjU3MDcyNjgwLCJleHAiOjE2ODA3NDYyODB9.OZ3Y4BPlrSDbo9KtT4l8jRPAWGsEwYoAK_gjWTYfOJw',
+            'Device-Encode' : '93b5a7a8702a6e75b3e2bbc1b3b2fb8c',
+            'Secret-Code': '7bc79fa5139b8266e12993014bb68911'
+        }
+        axios.defaults.headers =  headerFormDataGet
+        var result = await axios.get("https://staging-api.go2joy.vn/api/v3/mobile/reward/getPromotionLuckyWheel", {name: "data"}).then(function (response) {
+            console.log(response.data.data)
+            return response.data.data
+        })
+        return result
+    }
+    async function postDataToApi (snGift) {
+        const headerFormDataGet = {
+            'Authorization' : 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJsYXJhdmVsLWp3dCIsInN1YiI6IntcInNjb3BlXCI6XCJtb2JpbGVcIixcImFwcFVzZXJTblwiOjQwNDM2NyxcInJlYWRBZ3JlZVBvbGljeVwiOjF9IiwiaWF0IjoxNjU3MDcyNjgwLCJleHAiOjE2ODA3NDYyODB9.OZ3Y4BPlrSDbo9KtT4l8jRPAWGsEwYoAK_gjWTYfOJw',
+            'Device-Encode' : '93b5a7a8702a6e75b3e2bbc1b3b2fb8c',
+            'Secret-Code': '7bc79fa5139b8266e12993014bb68911'
+        }
+        const formData = {
+          sn: snGift
+        }
+        axios.defaults.headers =  headerFormDataGet
+        var result = await axios.post("https://staging-api.go2joy.vn/api/v3/mobile/reward/applyPromotionLuckyWheel",formData).then(function (response) {
+            console.log(response.data.data)
+            return response.data.data
+        })
+        return result
+    }
+    function getQueryParams(qs) {
+        qs = qs.split('+').join(' ');
 
-          var params = {},
-              tokens,
-              re = /[?&]?([^=]+)=([^&]*)/g;
+        var params = {},
+            tokens,
+            re = /[?&]?([^=]+)=([^&]*)/g;
 
-          while (tokens = re.exec(qs)) {
-              params[decodeURIComponent(tokens[1])] = decodeURIComponent(tokens[2]);
-          }
-          console.log('params 1',params)
-          return params;
-      }
-      console.log('getQueryParams 2',getQueryParams( window.location.search))
-
-      
-      function parseQueryString(query) {
-          var vars = query.split("&");
-          var params = {};
-          for (var i = 0; i < vars.length; i++) {
+        while (tokens = re.exec(qs)) {
+            params[decodeURIComponent(tokens[1])] = decodeURIComponent(tokens[2]);
+        }
+        return params;
+    }
+    function parseQueryString(query) {
+        var vars = query.split("&");
+        var params = {};
+        for (var i = 0; i < vars.length; i++) {
             var pair = vars[i].split("=");
             var key = decodeURIComponent(pair.shift());
             var value = decodeURIComponent(pair.join("="));
             // If first entry with this name
             if (typeof params[key] === "undefined") {
-              params[key] = value;
-              // If second entry with this name
+            params[key] = value;
+            // If second entry with this name
             } else if (typeof params[key] === "string") {
-              var arr = [params[key], value];
-              params[key] = arr;
-              // If third or later entry with this name
+            var arr = [params[key], value];
+            params[key] = arr;
+            // If third or later entry with this name
             } else {
-              params[key].push(value);
+            params[key].push(value);
             }
-          }
-          return params;
         }
-        var params =  window.location.search;
-        var parsedQs = parseQueryString(params);
-
-        
-      var isPercentage = true;
-      var prizes = [
-        {
-          text: "", // nội dung giải thưởng
-          img: "images/luckywheel-11.png", // image
-          number: 100, // số lượng giải,
-          percentpage: 0.5 // 50% trúng thưởng
-        },
-        {
-          text: "",
-          img: "images/luckywheel-22.png",
-          number : 100,
-          percentpage: 0.01 // 10%
-        },
-        {
-          text: "",
-          img: "images/luckywheel-33.png",
-          number: 100,
-          percentpage: 0.01 // 10%
-        },
-        {
-          text: "",
-          img: "images/luckywheel-44.png",
-          number: 100,
-          percentpage: 0.01 // 10%
-        },
-        {
-          text: "",
-          img: "images/luckywheel-11.png",
-          number: 100,
-          percentpage: 0.001 // 10%
-        },
-        {
-          text: "",
-          img: "images/luckywheel-00.png",
-          number: 100,
-          percentpage: 0.001 // 10%
-        },
-      ];
-      document.addEventListener(
-        "DOMContentLoaded",
-        function() {
-          hcLuckywheel.init({
-            id: "luckywheel",
-            config: function(callback) {
-              callback &&
-                callback(prizes);
-            },
-            mode : "both",
-            getPrize: function(callback) {
-              var rand = randomIndex(prizes);
-              var chances = rand;
-              callback && callback([rand, chances]);
-            },
-            gotBack: function(data) {
-              
-              if(data == null){ 
-                document.getElementById("myModal").innerHTML += `<div class="modal" id="myModal-down-app">
-                <div class="g2j-basic-modal g2j-direct-app-notice-modal">
-                    <div class="g2j-basic-modal__bg modal-bg"> </div>
-                      <div class="g2j-basic-modal__section modal-section">
-                      <div class="g2j-basic-modal__section__head section-head">
-                          <div class="g2j-basic-modal__section__head__title head-title"> </div>
-                          <div class="g2j-basic-modal__section__head__close-btn close" >
-                                <span class="close " data-dismiss="modal">
-                                  <img src="https://go2joy.vn/image/remove3.webp" alt="">
-                                </span>
-                          </div>
-                          </div>
-                      <div class="g2j-basic-modal__section__body section-body scroll-bar-custom">
-                      <div class="g2j-direct-app-notice-modal__img-outer" >
-                            <img class="g2j-direct-app-notice-modal__img" src="https://go2joy.vn/image/bg/direct-app-notice-img.png" alt="Chương trình đã kết thúc" />
-                          </div>
-                          <h2 class="g2j-direct-app-notice-modal__content--title">Chương trình đã kết thúc</h2>
-                          <div class="g2j-direct-app-notice-modal__content--second"> Tải Ứng dụng Go2Joy tại đây</div>
-                          <div class="g2j-direct-app-notice-modal__container-group">
-                          <img src="https://go2joy.vn/image/qrcode.svg" alt="QR Go2Joy App" height="85px" width="85px" />
-                          <div class="g2j-direct-app-notice-modal__btn-group">
-                            
-                          </div>
-                          </div>
-                      </div>
-                    </div>
-                </div>
-              </div>`;
-              
-              } else if (data == 'Có cái nịt'){
-                console.log('Bạn không trúng thưởng')
-                document.getElementById("myModal").innerHTML += `<div class="modal" id="myModal-down-app">
-                <div class="g2j-basic-modal g2j-direct-app-notice-modal">
-                    <div class="g2j-basic-modal__bg modal-bg"> </div>
-                      <div class="g2j-basic-modal__section modal-section">
-                      <div class="g2j-basic-modal__section__head section-head">
-                          <div class="g2j-basic-modal__section__head__title head-title"> </div>
-                          <div class="g2j-basic-modal__section__head__close-btn close" >
-                                <span class="close " data-dismiss="modal">
-                                  <img src="https://go2joy.vn/image/remove3.webp" alt="">
-                                </span>
-                          </div>
-                          </div>
-                      <div class="g2j-basic-modal__section__body section-body scroll-bar-custom">
-                      <div class="g2j-direct-app-notice-modal__img-outer" >
-                            <img class="g2j-direct-app-notice-modal__img" src="https://go2joy.vn/image/bg/direct-app-notice-img.png" alt="Bạn không trúng thưởng" />
-                          </div>
-                          <h2 class="g2j-direct-app-notice-modal__content--title">"Mời bạn truy cập ứng dụng Go2Joy để nhận ưu đãi</h2>
-                          <div class="g2j-direct-app-notice-modal__content--second">Bạn không trúng thưởng</div>
-                          <div class="g2j-direct-app-notice-modal__container-group">
-                          <img src="https://go2joy.vn/image/qrcode.svg" alt="QR Go2Joy App" height="85px" width="85px" />
-                          <div class="g2j-direct-app-notice-modal__btn-group">
-                            
-                          </div>
-                          </div>
-                      </div>
-                    </div>
-                </div>
-              </div>`;
-              } else{
-                console.log('Đã trúng giải')
-                
-                document.getElementById("myModal").innerHTML += `<div class="modal" id="myModal-down-app">
-                <div class="g2j-basic-modal g2j-direct-app-notice-modal">
-                    <div class="g2j-basic-modal__bg modal-bg"> </div>
-                      <div class="g2j-basic-modal__section modal-section">
-                      <div class="g2j-basic-modal__section__head section-head">
-                          <div class="g2j-basic-modal__section__head__title head-title"> </div>
-                          <div class="g2j-basic-modal__section__head__close-btn close" >
-                                <span class="close " data-dismiss="modal">
-                                  <img src="https://go2joy.vn/image/remove3.webp" alt="">
-                                </span>
-                          </div>
-                          </div>
-                      <div class="g2j-basic-modal__section__body section-body scroll-bar-custom">
-                      <div class="g2j-direct-app-notice-modal__img-outer" >
-                            <img class="g2j-direct-app-notice-modal__img" src="https://go2joy.vn/image/bg/direct-app-notice-img.png" alt="Mời bạn truy cập ứng dụng Go2Joy để nhận ưu đãi" />
-                          </div>
-                          <h2 class="g2j-direct-app-notice-modal__content--title">Mời bạn truy cập ứng dụng Go2Joy để nhận ưu đãi</h2>
-                          <div class="g2j-direct-app-notice-modal__content--second"> ${data}</div>
-                          <div class="g2j-direct-app-notice-modal__container-group">
-                          <img src="https://go2joy.vn/image/qrcode.svg" alt="QR Go2Joy App" height="85px" width="85px" />
-                          <div class="g2j-direct-app-notice-modal__btn-group">
-                            
-                          </div>
-                          </div>
-                      </div>
-                    </div>
-                </div>
-              </div>`;
-              }
-              const dialog = document.querySelector('.g2j-basic-modal');
-              const closeButton = document.querySelector('.close');
-                closeButton.addEventListener('click', () => {
-                    dialog.style.display = 'none';
-                    window.location.reload()
-                });
-              
-              
-            }
-          });
-        },
-        false
-      );
-      function randomIndex(prizes){
+        return params;
+    }
+    function randomIndex(prizes){
+      var isPercentage = true
         if(isPercentage){
-          var counter = 1;
+          /*var counter = 1;
           for (let i = 0; i < prizes.length; i++) {
             if(prizes[i].number == 0){
               counter++
@@ -625,9 +541,10 @@
           }
           if(counter == prizes.length){
             return null
-          }
+          }*/
           let rand = Math.random();
           let prizeIndex = null;
+          console.log(rand);
           switch (true) {
             case rand < prizes[4].percentpage:
               prizeIndex = 4 ;
@@ -643,16 +560,22 @@
               break;  
             case rand < prizes[4].percentpage + prizes[3].percentpage + prizes[2].percentpage + prizes[1].percentpage  + prizes[0].percentpage:
               prizeIndex = 0;
-              break;  
+              break;
+            case rand < prizes[5].percentpage + prizes[4].percentpage + prizes[3].percentpage + prizes[2].percentpage + prizes[1].percentpage  + prizes[0].percentpage:
+              prizeIndex = 5;
+              break; 
+            default :
+              prizeIndex = 5;
           }
-          if(prizes[prizeIndex] && prizes[prizeIndex].number != 0){
+          console.log('prizeIndex',prizeIndex)
+          if(prizes[prizeIndex].number != 0){
             prizes[prizeIndex].number = prizes[prizeIndex].number - 1
             return prizeIndex
           }else{
             return randomIndex(prizes)
           }
         }else{
-          var counter = 0;
+          /*var counter = 0;
           for (let i = 0; i < prizes.length; i++) {
             if(prizes[i].number == 0){
               counter++
@@ -660,7 +583,7 @@
           }
           if(counter == prizes.length){
             return null
-          }
+          }*/
           var rand = (Math.random() * (prizes.length)) >>> 0;
           if(prizes[rand].number != 0){
             prizes[rand].number = prizes[rand].number - 1
@@ -669,7 +592,131 @@
             return randomIndex(prizes)
           }
         }
-      }
+    };
+    document.addEventListener(
+        "DOMContentLoaded",
+        async function() {
+        var prizes = await getDataFromApi();
+        prizes.map(option => {
+        // New properties to be added
+        const newPropsObj = {
+          newkey1:true
+        };
+
+        // Assign new properties and return
+        return Object.assign(option, newPropsObj);
+      });
+        hcLuckywheel.init({
+            id: "luckywheel",
+            config: function(callback) {
+            callback &&
+                callback(prizes);
+            },
+            mode : "both",
+            getPrize: function(callback) {
+            var rand = randomIndex(prizes);
+            var chances = rand;
+            callback && callback([rand, chances]);
+            },
+            gotBack: function(data) {
+            console.log('data event', data)
+            if(data == null){ 
+                document.getElementById("myModal").innerHTML += `<div class="modal" id="myModal-down-app">
+                <div class="g2j-basic-modal g2j-direct-app-notice-modal">
+                    <div class="g2j-basic-modal__bg modal-bg"> </div>
+                    <div class="g2j-basic-modal__section modal-section">
+                    <div class="g2j-basic-modal__section__head section-head">
+                        <div class="g2j-basic-modal__section__head__title head-title"> </div>
+                        <div class="g2j-basic-modal__section__head__close-btn close" >
+                                <span class="close " data-dismiss="modal">
+                                <img src="https://go2joy.vn/image/remove3.webp" alt="">
+                                </span>
+                        </div>
+                        </div>
+                    <div class="g2j-basic-modal__section__body section-body scroll-bar-custom">
+
+                        <h2 class="g2j-direct-app-notice-modal__content--title">Chương trình đã kết thúc</h2>
+                        <div class="g2j-direct-app-notice-modal__content--second"> Tải Ứng dụng Go2Joy tại đây</div>
+                        <div class="g2j-direct-app-notice-modal__container-group">
+                        <img src="https://go2joy.vn/image/qrcode.svg" alt="QR Go2Joy App" height="85px" width="85px" />
+                        <div class="g2j-direct-app-notice-modal__btn-group">
+                            
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>`;
+            
+            } else if (data.text == 'Chúc bạn may mắn lần sau'){
+                console.log('Bạn không trúng thưởng')
+                document.getElementById("myModal").innerHTML += `<div class="modal" id="myModal-down-app">
+                <div class="g2j-basic-modal g2j-direct-app-notice-modal">
+                    <div class="g2j-basic-modal__bg modal-bg"> </div>
+                    <div class="g2j-basic-modal__section modal-section">
+                    <div class="g2j-basic-modal__section__head section-head">
+                        <div class="g2j-basic-modal__section__head__title head-title"> </div>
+                        <div class="g2j-basic-modal__section__head__close-btn close" >
+                                <span class="close " data-dismiss="modal">
+                                <img src="https://go2joy.vn/image/remove3.webp" alt="">
+                                </span>
+                        </div>
+                        </div>
+                    <div class="g2j-basic-modal__section__body section-body scroll-bar-custom">
+
+                        <h2 class="g2j-direct-app-notice-modal__content--title">${data.text} (Có cái nịt)</h2>
+                        <div class="g2j-direct-app-notice-modal__content--second"> 
+                          <img src="https://go2joy.s3.ap-southeast-1.amazonaws.com${data.img}" />
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>`;
+            } else{
+                console.log('Đã trúng giải')
+                
+                document.getElementById("myModal").innerHTML += `<div class="modal" id="myModal-down-app">
+                <div class="g2j-basic-modal g2j-direct-app-notice-modal">
+                    <div class="g2j-basic-modal__bg modal-bg"> </div>
+                    <div class="g2j-basic-modal__section modal-section">
+                    <div class="g2j-basic-modal__section__head section-head">
+                        <div class="g2j-basic-modal__section__head__title head-title"> </div>
+                        <div class="g2j-basic-modal__section__head__close-btn close" >
+                                <span class="close " data-dismiss="modal">
+                                <img src="https://go2joy.vn/image/remove3.webp" alt="">
+                                </span>
+                        </div>
+                        </div>
+                    <div class="g2j-basic-modal__section__body section-body scroll-bar-custom">
+
+                        <h2 class="g2j-direct-app-notice-modal__content--title">${data.text}</h2>
+                        <div class="g2j-direct-app-notice-modal__content--second"> 
+                          <img src="https://go2joy.s3.ap-southeast-1.amazonaws.com${data.img}" />
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>`;
+            }
+            //postDataToApi()
+            const dialog = document.querySelector('.g2j-basic-modal');
+            const closeButton = document.querySelector('.close');
+                closeButton.addEventListener('click', () => {
+                    dialog.style.display = 'none';
+                    
+                });
+            const bgRef = document.querySelector('.bg')
+            const wrapper = document.querySelector('.wrapper')
+            wrapper.style.display ='none'
+            bgRef.classList.add("bg-ref");
+            }
+        });
+        },
+        false
+    );
     </script>
   </body>
+  <script src="js/hc-canvas-luckwheel.js"></script>
 </html>
