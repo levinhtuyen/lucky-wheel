@@ -542,21 +542,24 @@
             console.log('response randomPromotionLuckyWheel', response.data.data)
             return response.data.data
         })
-        return prizeIndex
+        var index = prizes.findIndex(item => item.sn === prizeIndex);
+        console.log('prizeIndex',prizeIndex)
+        console.log('index',index)
+        return index
     };
     document.addEventListener(
         "DOMContentLoaded",
         async function() {
         var prizes = await getDataFromApi();
-        prizes.map(option => {
+        //prizes.map(option => {
         // New properties to be added
-        const newPropsObj = {
-          newkey1:true
-        };
+        //const newPropsObj = {
+        //newkey1:true
+        //};
 
         // Assign new properties and return
-        return Object.assign(option, newPropsObj);
-      });
+        //return Object.assign(option, newPropsObj);
+        //});
         hcLuckywheel.init({
             id: "luckywheel",
             config: function(callback) {
