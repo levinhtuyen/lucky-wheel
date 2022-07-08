@@ -530,68 +530,19 @@
         }
         return params;
     }
-    function randomIndex(prizes){
+    async function randomIndex(prizes){
       var isPercentage = true
-        if(isPercentage){
-          /*var counter = 1;
-          for (let i = 0; i < prizes.length; i++) {
-            if(prizes[i].number == 0){
-              counter++
-            }
-          }
-          if(counter == prizes.length){
-            return null
-          }*/
-          let rand = Math.random();
-          let prizeIndex = null;
-          console.log(rand);
-          switch (true) {
-            case rand < prizes[4].percentpage:
-              prizeIndex = 4 ;
-              break;
-            case rand < prizes[4].percentpage + prizes[3].percentpage:
-              prizeIndex = 3;
-              break;
-            case rand < prizes[4].percentpage + prizes[3].percentpage + prizes[2].percentpage:
-              prizeIndex = 2;
-              break;
-            case rand < prizes[4].percentpage + prizes[3].percentpage + prizes[2].percentpage + prizes[1].percentpage:
-              prizeIndex = 1;
-              break;  
-            case rand < prizes[4].percentpage + prizes[3].percentpage + prizes[2].percentpage + prizes[1].percentpage  + prizes[0].percentpage:
-              prizeIndex = 0;
-              break;
-            case rand < prizes[5].percentpage + prizes[4].percentpage + prizes[3].percentpage + prizes[2].percentpage + prizes[1].percentpage  + prizes[0].percentpage:
-              prizeIndex = 5;
-              break; 
-            default :
-              prizeIndex = 5;
-          }
-          console.log('prizeIndex',prizeIndex)
-          if(prizes[prizeIndex].number != 0){
-            prizes[prizeIndex].number = prizes[prizeIndex].number - 1
-            return prizeIndex
-          }else{
-            return randomIndex(prizes)
-          }
-        }else{
-          /*var counter = 0;
-          for (let i = 0; i < prizes.length; i++) {
-            if(prizes[i].number == 0){
-              counter++
-            }
-          }
-          if(counter == prizes.length){
-            return null
-          }*/
-          var rand = (Math.random() * (prizes.length)) >>> 0;
-          if(prizes[rand].number != 0){
-            prizes[rand].number = prizes[rand].number - 1
-            return rand
-          }else{
-            return randomIndex(prizes)
-          }
+      const headerFormDataGet = {
+            'Authorization' : 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJsYXJhdmVsLWp3dCIsInN1YiI6IntcInNjb3BlXCI6XCJtb2JpbGVcIixcImFwcFVzZXJTblwiOjQwNDM2NyxcInJlYWRBZ3JlZVBvbGljeVwiOjF9IiwiaWF0IjoxNjU3MDcyNjgwLCJleHAiOjE2ODA3NDYyODB9.OZ3Y4BPlrSDbo9KtT4l8jRPAWGsEwYoAK_gjWTYfOJw',
+            'Device-Encode' : '93b5a7a8702a6e75b3e2bbc1b3b2fb8c',
+            'Secret-Code': '7bc79fa5139b8266e12993014bb68911'
         }
+        axios.defaults.headers =  headerFormDataGet
+        prizeIndex = await axios.get("https://staging-api.go2joy.vn/api/v3/mobile/reward/randomPromotionLuckyWheel", {name: "data"}).then(function (response) {
+            console.log('response randomPromotionLuckyWheel', response.data.data)
+            return response.data.data
+        })
+        return prizeIndex
     };
     document.addEventListener(
         "DOMContentLoaded",
@@ -613,8 +564,8 @@
                 callback(prizes);
             },
             mode : "both",
-            getPrize: function(callback) {
-            var rand = randomIndex(prizes);
+            getPrize: async function(callback) {
+            var rand = await randomIndex(prizes);
             var chances = rand;
             callback && callback([rand, chances]);
             },
