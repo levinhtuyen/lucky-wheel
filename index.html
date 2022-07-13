@@ -454,65 +454,21 @@
   
     
     <script>
-    checkDataFromApi()
-    async function checkDataFromApi () {
-        const headerFormDataGet = {
-            'Authorization' : 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJsYXJhdmVsLWp3dCIsInN1YiI6IntcInNjb3BlXCI6XCJtb2JpbGVcIixcImFwcFVzZXJTblwiOjQwNDM2NyxcInJlYWRBZ3JlZVBvbGljeVwiOjF9IiwiaWF0IjoxNjU3MDcyNjgwLCJleHAiOjE2ODA3NDYyODB9.OZ3Y4BPlrSDbo9KtT4l8jRPAWGsEwYoAK_gjWTYfOJw',
-            'Device-Encode' : '93b5a7a8702a6e75b3e2bbc1b3b2fb8c',
-            'Secret-Code': '7bc79fa5139b8266e12993014bb68911'
-        }
-        axios.defaults.headers =  headerFormDataGet
-        var result = await axios.get("https://staging-api.go2joy.vn/api/v3/mobile/reward/checkUserConditionLuckyWheel", {name: "data"}).then(function (response) {
-            console.log(response.data.data)
-            return response.data.data
-        })
-        return result
+    const header = parseQueryString()
+    const headerFormDataGet = {
+        'Authorization' : header?.Token,
+        'Device-Encode' : header?.DeviceEncode,
+        'Secret-Code': header?.SecretCode
     }
-    async function getDataFromApi () {
-        const headerFormDataGet = {
-            'Authorization' : 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJsYXJhdmVsLWp3dCIsInN1YiI6IntcInNjb3BlXCI6XCJtb2JpbGVcIixcImFwcFVzZXJTblwiOjQwNDM2NyxcInJlYWRBZ3JlZVBvbGljeVwiOjF9IiwiaWF0IjoxNjU3MDcyNjgwLCJleHAiOjE2ODA3NDYyODB9.OZ3Y4BPlrSDbo9KtT4l8jRPAWGsEwYoAK_gjWTYfOJw',
-            'Device-Encode' : '93b5a7a8702a6e75b3e2bbc1b3b2fb8c',
-            'Secret-Code': '7bc79fa5139b8266e12993014bb68911'
+    axios.defaults.headers =  headerFormDataGet
+    function parseQueryString() {
+        let query = window.location.search;
+        if(!query){
+          return
         }
-        axios.defaults.headers =  headerFormDataGet
-        var result = await axios.get("https://staging-api.go2joy.vn/api/v3/mobile/reward/getPromotionLuckyWheel", {name: "data"}).then(function (response) {
-            console.log(response.data.data)
-            return response.data.data
-        })
-        return result
-    }
-    async function postDataToApi (snGift) {
-        const headerFormDataGet = {
-            'Authorization' : 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJsYXJhdmVsLWp3dCIsInN1YiI6IntcInNjb3BlXCI6XCJtb2JpbGVcIixcImFwcFVzZXJTblwiOjQwNDM2NyxcInJlYWRBZ3JlZVBvbGljeVwiOjF9IiwiaWF0IjoxNjU3MDcyNjgwLCJleHAiOjE2ODA3NDYyODB9.OZ3Y4BPlrSDbo9KtT4l8jRPAWGsEwYoAK_gjWTYfOJw',
-            'Device-Encode' : '93b5a7a8702a6e75b3e2bbc1b3b2fb8c',
-            'Secret-Code': '7bc79fa5139b8266e12993014bb68911'
-        }
-        const formData = {
-          sn: snGift
-        }
-        axios.defaults.headers =  headerFormDataGet
-        var result = await axios.post("https://staging-api.go2joy.vn/api/v3/mobile/reward/applyPromotionLuckyWheel",formData).then(function (response) {
-            console.log(response.data.data)
-            return response.data.data
-        })
-        return result
-    }
-    function getQueryParams(qs) {
-        qs = qs.split('+').join(' ');
-
-        var params = {},
-            tokens,
-            re = /[?&]?([^=]+)=([^&]*)/g;
-
-        while (tokens = re.exec(qs)) {
-            params[decodeURIComponent(tokens[1])] = decodeURIComponent(tokens[2]);
-        }
-        return params;
-    }
-    function parseQueryString(query) {
-        var vars = query.split("&");
-        var params = {};
-        for (var i = 0; i < vars.length; i++) {
+        var urlparts= query.split('?');
+        var vars = urlparts[1]?.split("&");
+        for (var i = 0; i < vars?.length; i++) {
             var pair = vars[i].split("=");
             var key = decodeURIComponent(pair.shift());
             var value = decodeURIComponent(pair.join("="));
@@ -530,20 +486,35 @@
         }
         return params;
     }
-    async function randomIndex(prizes){
-      var isPercentage = true
-      const headerFormDataGet = {
+    async function checkDataFromApi () {
+        var result = await axios.get("https://staging-api.go2joy.vn/api/v3/mobile/reward/checkUserConditionLuckyWheel", {name: "data"}).then(function (response) {
+            console.log(response.data.data)
+            return response.data.data
+        })
+        return result
+    }
+    async function getDataFromApi () {
+        if(!header){
+          axios.defaults.headers = {
             'Authorization' : 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJsYXJhdmVsLWp3dCIsInN1YiI6IntcInNjb3BlXCI6XCJtb2JpbGVcIixcImFwcFVzZXJTblwiOjQwNDM2NyxcInJlYWRBZ3JlZVBvbGljeVwiOjF9IiwiaWF0IjoxNjU3MDcyNjgwLCJleHAiOjE2ODA3NDYyODB9.OZ3Y4BPlrSDbo9KtT4l8jRPAWGsEwYoAK_gjWTYfOJw',
             'Device-Encode' : '93b5a7a8702a6e75b3e2bbc1b3b2fb8c',
             'Secret-Code': '7bc79fa5139b8266e12993014bb68911'
+          }
         }
-        axios.defaults.headers =  headerFormDataGet
+        var result = await axios.get("https://staging-api.go2joy.vn/api/v3/mobile/reward/getPromotionLuckyWheel", {name: "data"}).then(function (response) {
+            console.log(response.data.data)
+            return response.data.data
+        })
+        return result
+    }
+    async function randomIndex(prizes){
+      const check = checkDataFromApi()
+      var isPercentage = true
         prizeIndex = await axios.get("https://staging-api.go2joy.vn/api/v3/mobile/reward/randomPromotionLuckyWheel", {name: "data"}).then(function (response) {
             console.log('response randomPromotionLuckyWheel', response.data.data)
             return response.data.data
         })
         var index = prizes.findIndex(item => item.sn === prizeIndex);
-        console.log('prizeIndex',prizeIndex)
         console.log('index',index)
         return index
     };
@@ -551,15 +522,6 @@
         "DOMContentLoaded",
         async function() {
         var prizes = await getDataFromApi();
-        //prizes.map(option => {
-        // New properties to be added
-        //const newPropsObj = {
-        //newkey1:true
-        //};
-
-        // Assign new properties and return
-        //return Object.assign(option, newPropsObj);
-        //});
         hcLuckywheel.init({
             id: "luckywheel",
             config: function(callback) {
@@ -573,7 +535,6 @@
             callback && callback([rand, chances]);
             },
             gotBack: function(data) {
-            console.log('data event', data)
             if(data == null){ 
                 document.getElementById("myModal").innerHTML += `<div class="modal" id="myModal-down-app">
                 <div class="g2j-basic-modal g2j-direct-app-notice-modal">
@@ -589,7 +550,7 @@
                         </div>
                     <div class="g2j-basic-modal__section__body section-body scroll-bar-custom">
 
-                        <h2 class="g2j-direct-app-notice-modal__content--title">Chương trình đã kết thúc</h2>
+                        <h2 class="g2j-direct-app-notice-modal__content--title">Chương trình đã kết thúc hoặc bạn đã chơi rồi</h2>
                         <div class="g2j-direct-app-notice-modal__content--second"> Tải Ứng dụng Go2Joy tại đây</div>
                         <div class="g2j-direct-app-notice-modal__container-group">
                         <img src="https://go2joy.vn/image/qrcode.svg" alt="QR Go2Joy App" height="85px" width="85px" />
@@ -654,7 +615,6 @@
                 </div>
             </div>`;
             }
-            //postDataToApi()
             const dialog = document.querySelector('.g2j-basic-modal');
             const closeButton = document.querySelector('.close');
                 closeButton.addEventListener('click', () => {
