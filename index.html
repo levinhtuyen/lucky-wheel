@@ -14,7 +14,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"></script>
     <style>
       .bg-ref {
-          background-image: url('images/ref-lucky-wheel.jpg');
+          background-image: url('./src/assets/images/ref-lucky-wheel.jpg');
           background-position: center center;
           background-repeat: no-repeat;
           background-attachment: fixed;
@@ -119,7 +119,24 @@
         width: 20px;
         height: 20px;
       }
-
+      .detail-btn {
+        display: flex;
+        height: 28px;
+        align-items: center;
+        background: #ff6400;
+        border-radius: 28px;
+        border: none;
+        box-shadow: -2px 8px 16px rgb(255 100 0 / 20%);
+        color: #fff;
+        font-size: 14px;
+        font-weight: 700;
+        padding: 4px 24px;
+        cursor: pointer;
+        white-space: nowrap;
+      }
+      .detail-btn a{
+        color: #fff;
+      }
       .g2j-direct-app-notice-modal .modal-section {
         top: 50%;
           position: relative;
@@ -239,7 +256,7 @@
             height: 75px;
         }
         .bg-ref {
-          background-image: url('images/ref-lucky-wheel.jpg');
+          background-image: url('./src/assets/images/ref-lucky-wheel.jpg');
           background-position: center center;
           background-repeat: no-repeat;
           background-attachment: fixed;
@@ -289,7 +306,7 @@
             height: 90px;
         }
         .bg {
-            background-image: url('images/luckywheel-02-tablet.jpg');
+            background-image: url('./src/assets/images/luckywheel-02-tablet.jpg');
             background-position: center center;
             background-repeat: no-repeat;
             background-attachment: fixed;
@@ -297,7 +314,7 @@
             background-color: #464646;
         }
         .bg-ref {
-          background-image: url('images/ref-lucky-wheel.jpg');
+          background-image: url('./src/assets/images/ref-lucky-wheel.jpg');
           background-position: center center;
           background-repeat: no-repeat;
           background-attachment: fixed;
@@ -382,7 +399,7 @@
           font-size: 12px;
         }
         .bg {
-          background-image: url('images/luckywheel-02-mobile.jpg');
+          background-image: url('./src/assets/images/luckywheel-02-mobile.jpg');
           background-position: center center;
           background-repeat: no-repeat;
           background-attachment: fixed;
@@ -390,7 +407,7 @@
           background-color: #464646;
         }
         .bg-ref {
-          background-image: url('images/ref-lucky-wheel_mobile.jpg');
+          background-image: url('./src/assets/images/ref-lucky-wheel_mobile.jpg');
           background-position: center center;
           background-repeat: no-repeat;
           background-attachment: fixed;
@@ -434,7 +451,7 @@
         .hc-luckywheel-item span {
           transform-origin: 50% 125px;
         }
-      } 
+      }  
       
     </style>
   </head>
@@ -463,13 +480,13 @@
     axios.defaults.headers =  headerFormDataGet
     function parseQueryString() {
         let query = window.location.search;
-        console.log('query',query)
         if(!query){
           return
         }
         var urlparts= query.split('?');
         var vars = urlparts[1]?.split("&");
         var params = {};
+        
         for (var i = 0; i < vars?.length; i++) {
             var pair = vars[i].split("=");
             var key = decodeURIComponent(pair.shift());
@@ -546,7 +563,7 @@
                         <div class="g2j-basic-modal__section__head__title head-title"> </div>
                         <div class="g2j-basic-modal__section__head__close-btn close" >
                                 <span class="close " data-dismiss="modal">
-                                <img src="https://go2joy.vn/image/remove3.webp" alt="">
+                                
                                 </span>
                         </div>
                         </div>
@@ -564,7 +581,6 @@
                     </div>
                 </div>
             </div>`;
-            
             } else if (data.text == 'Chúc bạn may mắn lần sau'){
                 console.log('Bạn không trúng thưởng')
                 document.getElementById("myModal").innerHTML += `<div class="modal" id="myModal-down-app">
@@ -575,18 +591,23 @@
                         <div class="g2j-basic-modal__section__head__title head-title"> </div>
                         <div class="g2j-basic-modal__section__head__close-btn close" >
                                 <span class="close " data-dismiss="modal">
-                                <img src="https://go2joy.vn/image/remove3.webp" alt="">
+                                
                                 </span>
                         </div>
                         </div>
                     <div class="g2j-basic-modal__section__body section-body scroll-bar-custom">
 
-                        <h2 class="g2j-direct-app-notice-modal__content--title">${data.text} (Có cái nịt)</h2>
+                        <h2 class="g2j-direct-app-notice-modal__content--title">${data.text}</h2>
                         <div class="g2j-direct-app-notice-modal__content--second"> 
                           <img src="https://go2joy.s3.ap-southeast-1.amazonaws.com${data.img}" />
                         </div>
+                          <div class="g2j-direct-app-notice-modal__btn-group">
+                            <div class="detail-btn"><a href="/back">Back</a></div>      
+                          </div>
                         </div>
-                    </div>
+
+                      </div>
+                      
                     </div>
                 </div>
             </div>`;
@@ -599,21 +620,23 @@
                     <div class="g2j-basic-modal__section modal-section">
                     <div class="g2j-basic-modal__section__head section-head">
                         <div class="g2j-basic-modal__section__head__title head-title"> </div>
-                        <div class="g2j-basic-modal__section__head__close-btn close" >
-                                <span class="close " data-dismiss="modal">
-                                <img src="https://go2joy.vn/image/remove3.webp" alt="">
-                                </span>
+                          <div class="g2j-basic-modal__section__head__close-btn close" >
+                            <span class="close " data-dismiss="modal">
+                            </span>
+                          </div>
                         </div>
-                        </div>
-                    <div class="g2j-basic-modal__section__body section-body scroll-bar-custom">
-
-                        <h2 class="g2j-direct-app-notice-modal__content--title">${data.text}</h2>
-                        <div class="g2j-direct-app-notice-modal__content--second"> 
-                          <img src="https://go2joy.s3.ap-southeast-1.amazonaws.com${data.img}" />
-                        </div>
+                        <div class="g2j-basic-modal__section__body section-body scroll-bar-custom">
+                            <h2 class="g2j-direct-app-notice-modal__content--title">${data.text}</h2>
+                            <div class="g2j-direct-app-notice-modal__content--second"> 
+                              <img src="https://go2joy.s3.ap-southeast-1.amazonaws.com${data.img}" />
+                            </div>
+                            <div class="g2j-direct-app-notice-modal__btn-group">
+                              <div class="detail-btn"><a href="/back">Back</a></div>    
+                            </div>
+                          </div>
                         </div>
                     </div>
-                    </div>
+                    
                 </div>
             </div>`;
             }
