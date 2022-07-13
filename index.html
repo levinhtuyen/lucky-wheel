@@ -463,6 +463,7 @@
     axios.defaults.headers =  headerFormDataGet
     function parseQueryString() {
         let query = window.location.search;
+        console.log('query',query)
         if(!query){
           return
         }
