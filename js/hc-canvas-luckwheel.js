@@ -127,10 +127,10 @@
       html.push('<li class="hc-luckywheel-item"> <span style="');
       html.push(transform + ": rotate(" + i * turnNum + 'turn)">');
       if (opts.mode == "both") {
-        html.push('<img src="https://go2joy.s3.ap-southeast-1.amazonaws.com' + prizeList[i].img + '" />');
+        html.push('<img src="https://staging-s3.go2joy.vn/200w/' + prizeList[i].img + '" />');
         //html.push("<span id='curve'>" + prizeList[i].text + "</span>");
       } else if (prizeList[i].img) {
-        html.push('<img src="https://go2joy.s3.ap-southeast-1.amazonaws.com' + prizeList[i].img + '" />');
+        html.push('<img src="https://staging-s3.go2joy.vn/200w/' + prizeList[i].img + '" />');
       } else {
         html.push('<span id="curve">' + prizeList[i].text + "</span>");
       }
