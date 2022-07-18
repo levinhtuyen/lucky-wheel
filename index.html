@@ -511,7 +511,14 @@
           wrapper.style.display ='none'
         } else {
           var result = await axios.get("https://staging-api.go2joy.vn/api/v3/mobile/reward/getPromotionLuckyWheel", {name: "data"}).then(function (response) {
-            return response.data.data
+            if(response.data.error && response.data.error[0].code === -1){
+              let origin = window.location.origin
+              let url =`${origin}/expired`
+              window.location.assign(url);
+            } else {
+              return response.data.data
+            }
+            
           })
           if(result.numberOfTurns !== 1) {
             const wrapper = document.querySelector('.wrapper')
