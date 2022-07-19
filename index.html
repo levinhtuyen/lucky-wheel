@@ -13,13 +13,21 @@
     <link rel="stylesheet" href="css/hc-canvas-luckwheel.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"></script>
     <style>
+      html, body {
+        overflow-x: hidden;
+      }
+      body {
+        position: relative;
+        touch-action: none;
+      }
       .bg-ref {
-          background-image: url('images/ref-lucky-wheel.jpg');
+          background-image: url('./src/assets/images/ref-lucky-wheel.jpg');
           background-position: center center;
           background-repeat: no-repeat;
           background-attachment: fixed;
           background-size: cover;
           background-color: #464646;
+          touch-action: none;
       }
       .hc-luckywheel {
         position:fixed;
@@ -35,7 +43,9 @@
       }
       .wrapper {
         width: 100%;
-        height: 100%
+        height: 100%;
+        cursor: no-drop;
+        touch-action: none;
       }
       .g2j-basic-modal__section {
         position: relative;
@@ -168,11 +178,11 @@
           text-align: center;
           margin: 20px 17% 16px;
       }
-
       .g2j-direct-app-notice-modal__content--second{
         display: flex;
         align-items: center;
         justify-content: center;
+        padding: 24px
       }
       .g2j-direct-app-notice-modal__content--second img{
         display: flex;
@@ -543,7 +553,7 @@
                         <div class="g2j-direct-app-notice-modal__content--second" style="min-height:50px"> 
                         </div>
                           <div class="g2j-direct-app-notice-modal__btn-group">
-                            <div class="detail-btn"><a href="/back">Back</a></div>      
+                            <div class="detail-btn"><a href="/back">Trở lại</a></div>      
                           </div>
                         </div>
 
@@ -598,7 +608,7 @@
                         <div class="g2j-direct-app-notice-modal__content--second"> Tải Ứng dụng Go2Joy tại đây</div>
                         <div class="g2j-direct-app-notice-modal__container-group">
                         <div class="g2j-direct-app-notice-modal__btn-group">
-                            <div class="detail-btn"><a href="/back">Back</a></div>      
+                            <div class="detail-btn"><a href="/back">Trở lại</a></div>      
                           </div>
                         </div>
                     </div>
@@ -625,7 +635,7 @@
                           <img src="https://staging-s3.go2joy.vn/200w/${data.img}" />
                         </div>
                           <div class="g2j-direct-app-notice-modal__btn-group">
-                            <div class="detail-btn"><a href="/back">Back</a></div>      
+                            <div class="detail-btn"><a href="/back">Trở lại</a></div>      
                           </div>
                         </div>
 
@@ -652,7 +662,7 @@
                               <img src="https://staging-s3.go2joy.vn/200w/${data.img}" />
                             </div>
                             <div class="g2j-direct-app-notice-modal__btn-group">
-                              <div class="detail-btn"><a href="/back">Back</a></div>    
+                              <div class="detail-btn"><a href="/back">Trở lại</a></div>    
                             </div>
                           </div>
                         </div>
